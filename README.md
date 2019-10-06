@@ -2,6 +2,8 @@ This repository is a part of **VaBanque** project for [VAMK University](http://p
 
 Created with Typescript and React. Api is available [here](https://github.com/rafalschmidt97/vabanque-api).  
 
+[![Build Status](https://travis-ci.com/rafalschmidt97/vabanque-client.svg?branch=master)](https://travis-ci.com/rafalschmidt97/vabanque-client)
+
 ## Contributing guidelines
 
 We really hope that good instructions for contributing will make the history of our app more readable. 
