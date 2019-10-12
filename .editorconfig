@@ -1,6 +1,6 @@
 root = true
 
-[*]
+[{*.ts, *.tsx, *.js, *.jsx, *.scss, *.css}]
 charset = utf-8
 indent_style = space
 indent_size = 2
