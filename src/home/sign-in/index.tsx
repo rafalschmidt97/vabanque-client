@@ -8,14 +8,14 @@ const SignIn = () => {
       <Helmet>
         <title>Sign in</title>
       </Helmet>
-      <main className="container">
-        <div className="jumbotron mt-5">
-          <div className="row">
-            <div className="col-lg-8 align-self-center">
-              <h1 className="display-4 text-secondary">VaBanque</h1>
+      <main className="">
+        <div className="">
+          <div className="">
+            <div className="">
+              <h1 className="">VaBanque</h1>
               <p>Feel free to add some code.</p>
             </div>
-            <div className="col-lg-4">
+            <div className="">
               <SignInForm />
             </div>
           </div>

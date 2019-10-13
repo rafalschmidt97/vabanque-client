@@ -38,16 +38,16 @@ class Overview extends Component<Props, State> {
         <Helmet>
           <title>Overview</title>
         </Helmet>
-        <div className="container">
-          <div className="jumbotron mt-5">
-            <div className="row">
-              <div className="col-lg-6">
-                <h1 className="display-4 text-secondary">Overview</h1>
+        <div className="">
+          <div className="">
+            <div className="">
+              <div className="">
+                <h1 className="">Overview</h1>
                 <p>Welcome in panel.</p>
-                <button onClick={this.incrementLocal} type="button" className="btn btn-primary">
+                <button onClick={this.incrementLocal} type="button" className="">
                   State counter: {localCounter}
                 </button>
-                <button onClick={this.increment} type="button" className="btn btn-secondary ml-2">
+                <button onClick={this.increment} type="button" className="">
                   Redux counter: {counter}
                 </button>
               </div>

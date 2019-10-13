@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
-    "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "formik": "^1.5.8",
     "lodash": "^4.17.15",
@@ -49,6 +48,7 @@
     "@types/yup": "^0.26.24",
     "@typescript-eslint/eslint-plugin": "^2.3.0",
     "@typescript-eslint/parser": "^2.3.0",
+    "bulma": "^0.7.5",
     "cross-env": "^6.0.3",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",

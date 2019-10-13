@@ -7,36 +7,36 @@ const Portal = (props: RouteComponentProps) => {
 
   return (
     <>
-      <nav className="navbar navbar-expand navbar-light bg-light">
-        <div className="navbar-brand">VaBanque</div>
-        <div className="collapse navbar-collapse">
-          <ul className="navbar-nav">
-            <li className="nav-item active">
-              <NavLink to={`${path}/`} className="nav-link">
+      <nav className="">
+        <div className="">VaBanque</div>
+        <div className="">
+          <ul className="">
+            <li className="">
+              <NavLink to={`${path}/`} className="">
                 Page 1
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to={`${path}/`} className="nav-link">
+            <li className="">
+              <NavLink to={`${path}/`} className="">
                 Page 2
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to={`${path}/`} className="nav-link">
+            <li className="">
+              <NavLink to={`${path}/`} className="">
                 Page 3
               </NavLink>
             </li>
           </ul>
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <NavLink to="/" className="nav-link">
+          <ul className="">
+            <li className="">
+              <NavLink to="/" className="">
                 Logout
               </NavLink>
             </li>
           </ul>
         </div>
       </nav>
-      <main className="container">
+      <main className="">
         <Switch>
           <Route exact path={`${path}/`} component={Overview} />
         </Switch>

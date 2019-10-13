@@ -53,7 +53,7 @@ const SignInForm: FC<Props> = props => {
             })}
           />
 
-          <button type="submit" className="btn btn-primary btn-block mt-2" disabled={isSubmitting}>
+          <button type="submit" className="" disabled={isSubmitting}>
             Sign in
           </button>
         </Form>
