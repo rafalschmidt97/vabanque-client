@@ -1,77 +1,26 @@
-import React, { Component } from 'react';
-import Helmet from 'react-helmet';
-import { connect } from 'react-redux';
+import React, { FunctionComponent, useState, useReducer } from 'react';
 import { IncrementCounter } from './actions';
-import { Dispatch } from 'redux';
-import { RootState } from '../../common/state';
+import { OverviewReducer } from './reducer';
 
-type Props = {
-  counter: number;
-  increment: () => void;
+const Overview: FunctionComponent<{ initialCounter?: number }> = ({
+  initialCounter: initial = 0,
+}) => {
+  const [localCounter, setLocalCounter] = useState(initial);
+  const [state, dispatch] = useReducer(OverviewReducer, { counter: initial });
+
+  return (
+    <>
+      <div>
+        <p>Local counter: {localCounter}</p>
+        <button onClick={() => setLocalCounter(localCounter + 1)}>+</button>
+        <button onClick={() => setLocalCounter(localCounter - 1)}>-</button>
+      </div>
+      <div>
+        <p>Redux count: {state.counter}</p>
+        <button onClick={() => dispatch(new IncrementCounter())}>+</button>
+      </div>
+    </>
+  );
 };
 
-type State = {
-  localCounter: number;
-};
-
-class Overview extends Component<Props, State> {
-  state = {
-    localCounter: 1,
-  };
-
-  incrementLocal = () => {
-    this.setState({
-      localCounter: this.state.localCounter + 1,
-    });
-  };
-
-  increment = () => {
-    this.props.increment();
-  };
-
-  render() {
-    const { localCounter } = this.state;
-    const { counter } = this.props;
-
-    return (
-      <>
-        <Helmet>
-          <title>Overview</title>
-        </Helmet>
-        <div className="">
-          <div className="">
-            <div className="">
-              <div className="">
-                <h1 className="">Overview</h1>
-                <p>Welcome in panel.</p>
-                <button onClick={this.incrementLocal} type="button" className="">
-                  State counter: {localCounter}
-                </button>
-                <button onClick={this.increment} type="button" className="">
-                  Redux counter: {counter}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
-}
-
-function mapStateToProps(state: RootState) {
-  return {
-    counter: state.overview.counter,
-  };
-}
-
-function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    increment: () => dispatch(new IncrementCounter()),
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Overview);
+export default Overview;

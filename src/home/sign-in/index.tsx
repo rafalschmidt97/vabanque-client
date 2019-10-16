@@ -1,6 +1,13 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import SignInForm from './form';
+import Sky from 'react-sky';
+import chip from './chip.png';
+import logo from './logo.png';
+import styles from './styles.module.scss';
+import LoginFacebook from './external-auth/Facebook';
+import LoginGoogle from './external-auth/Google';
+
+const gradient = 'linear-gradient(to top, #c31432, #240b36)';
 
 const SignIn = () => {
   return (
@@ -8,19 +15,34 @@ const SignIn = () => {
       <Helmet>
         <title>Sign in</title>
       </Helmet>
-      <main className="">
-        <div className="">
-          <div className="">
-            <div className="">
-              <h1 className="">VaBanque</h1>
-              <p>Feel free to add some code.</p>
+      <section className="section">
+        <div className="container">
+          <figure className={`image ${styles.logo} container`}>
+            <img src={logo} />
+          </figure>
+        </div>
+      </section>
+      <section className="hero has-margin-top-20">
+        <div className="hero-body">
+          <div className="columns">
+            <div className="container has-text-centered column ">
+              <LoginFacebook />
             </div>
-            <div className="">
-              <SignInForm />
+            <div className="container has-text-centered column has-margin-top-15">
+              <LoginGoogle />
             </div>
           </div>
         </div>
-      </main>
+      </section>
+      <Sky
+        images={{
+          0: chip,
+        }}
+        how={15}
+        time={40}
+        size="100px"
+        background={`${gradient}`}
+      />
     </>
   );
 };
