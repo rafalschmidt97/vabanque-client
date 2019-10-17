@@ -23,44 +23,84 @@ const FormSchema = Yup.object().shape<FormValues>({
   password: Yup.string().required('Required'),
 });
 
-const SignInForm: FC<Props> = props => {
+const UpdateInfoForm: FC<Props> = props => {
   const onSubmit = (form: FormValues) => {
     console.log(form);
   };
 
   return (
-    <Formik
-      validationSchema={FormSchema}
-      initialValues={initialFormValues}
-      onSubmit={onSubmit}
-      render={({ errors, touched, isSubmitting }: FormikProps<FormValues>) => (
-        <Form className={classNames({ [styles.example]: props.example })}>
-          <Field
-            type="email"
-            name="email"
-            placeholder="email"
-            className={classNames('form-control', {
-              'is-invalid': touched.email && errors.email,
-            })}
-          />
+    <>
+      <section className={`hero ${styles.gradient}`}>
+        <div className="hero-body">
+          <div className="container has-text-centered">
+            <h1 className="title has-text-white">Avatar</h1>
+          </div>
+        </div>
+      </section>
 
-          <Field
-            type="password"
-            name="password"
-            placeholder="password"
-            className={classNames('form-control mt-2', {
-              'is-invalid': touched.password && errors.password,
-            })}
-          />
+      <section className="section">
+        <div />
+        <div className="container">
+          <Formik
+            validationSchema={FormSchema}
+            initialValues={initialFormValues}
+            onSubmit={onSubmit}
+            render={({ errors, touched, isSubmitting }: FormikProps<FormValues>) => (
+              <Form className="">
+                <div className="field">
+                  <div className="control">
+                    <Field
+                      type="email"
+                      name="email"
+                      placeholder="email"
+                      className={classNames('input', {
+                        'is-invalid': touched.email && errors.email,
+                      })}
+                    />
+                  </div>
+                </div>
 
-          <button type="submit" className="" disabled={isSubmitting}>
-            Sign in
-          </button>
-        </Form>
-      )}
-    />
+                <div className="field">
+                  <div className="control">
+                    <Field
+                      type="password"
+                      name="password"
+                      placeholder="password"
+                      className={classNames('input', {
+                        'is-invalid': touched.password && errors.password,
+                      })}
+                    />
+                  </div>
+                </div>
+
+                <div className="field is-grouped">
+                  <div className="control">
+                    <button
+                      type="submit"
+                      className="button is-primary is-large"
+                      disabled={isSubmitting}
+                    >
+                      Update
+                    </button>
+                  </div>
+                  <div className="control">
+                    <button
+                      type="submit"
+                      className="button is-text is-large"
+                      disabled={isSubmitting}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </Form>
+            )}
+          />
+        </div>
+      </section>
+    </>
   );
 };
 
-SignInForm.defaultProps = { example: true };
-export default withRouter(SignInForm);
+UpdateInfoForm.defaultProps = { example: true };
+export default withRouter(UpdateInfoForm);

@@ -1,15 +1,20 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import Sky from 'react-sky';
-import chip from './chip.png';
-import logo from './logo.png';
+import chip from './images/chip.png';
+import logo from './images/logo.png';
 import styles from './styles.module.scss';
 import LoginFacebook from './external-auth/Facebook';
 import LoginGoogle from './external-auth/Google';
+import { RouteComponentProps } from 'react-router';
 
 const gradient = 'linear-gradient(to top, #c31432, #240b36)';
 
-const SignIn = () => {
+const SignIn = (props: RouteComponentProps) => {
+  const signIn = () => {
+    props.history.push('update-info');
+  };
+
   return (
     <>
       <Helmet>
@@ -25,10 +30,10 @@ const SignIn = () => {
       <section className="hero has-margin-top-20">
         <div className="hero-body">
           <div className="columns">
-            <div className="container has-text-centered column ">
+            <div className="container has-text-centered column" onClick={signIn}>
               <LoginFacebook />
             </div>
-            <div className="container has-text-centered column has-margin-top-15">
+            <div className="container has-text-centered column has-margin-top-15" onClick={signIn}>
               <LoginGoogle />
             </div>
           </div>

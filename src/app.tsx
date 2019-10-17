@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStoreWithMiddleware } from './common/state';
 import SignIn from './home/sign-in';
-import Panel from './panel';
+import UpdateInfoForm from './home/sign-in/form';
 
 const store = createStoreWithMiddleware();
 
@@ -13,7 +13,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path="/" component={SignIn} />
-          <Route path="/panel" component={Panel} />
+          <Route path="/update-info" component={UpdateInfoForm} />
         </Switch>
       </Router>
     </Provider>
