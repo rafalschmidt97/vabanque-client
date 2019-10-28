@@ -23,7 +23,7 @@ const SignIn = (props: RouteComponentProps) => {
       <section className="section">
         <div className="container">
           <figure className={`image ${styles.logo} container`}>
-            <img src={logo} />
+            <img src={logo} alt="vabanque-logo" />
           </figure>
         </div>
       </section>
