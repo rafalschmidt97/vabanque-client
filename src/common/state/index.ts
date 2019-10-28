@@ -2,7 +2,7 @@ import { OverviewReducer, OverviewState } from '../../panel/overview/reducer';
 import { applyMiddleware, combineReducers, compose, createStore, Reducer, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import actionToPlainObject from './midddlewares/action-to-plain-object';
+import actionToPlainObject from './middleware/action-to-plain-object';
 import isProduction from '../utils/is-production';
 
 export interface RootState {
