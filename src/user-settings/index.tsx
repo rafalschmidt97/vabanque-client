@@ -90,8 +90,8 @@ const UpdateInfoForm: FC<Props> = defaultProps => {
                       'is-danger': touched.username && errors.username,
                     })}
                     onBlur={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      handleUsernameChange(e.target.value);
                       handleBlur(e);
+                      handleUsernameChange(e.target.value);
                     }}
                   />
                   <Error fieldName="username" isVisible={!!(touched.username && errors.username)} />

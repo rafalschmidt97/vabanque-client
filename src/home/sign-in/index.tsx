@@ -12,7 +12,7 @@ const gradient = 'linear-gradient(to top, #c31432, #240b36)';
 
 const SignIn = (props: RouteComponentProps) => {
   const signIn = () => {
-    props.history.push('update-info');
+    props.history.push('user-settings');
   };
 
   return (
