@@ -30,13 +30,15 @@ const FormSchema = Yup.object().shape<FormValues>({
     .required('Required'),
 });
 
-const UpdateInfoForm: FC<Props> = defaultProps => {
-  const [profilePictureText, setProfilePictureText] = useState(
-    defaultProps.initialProfilePictureText,
-  );
+const UpdateInfoForm: FC<Props> = props => {
+  const [profilePictureText, setProfilePictureText] = useState(props.initialProfilePictureText);
 
   const onSubmit = (form: FormValues) => {
     console.log(form);
+  };
+
+  const cancel = () => {
+    props.history.push('/');
   };
 
   const handleUsernameChange = (username: string) => {
@@ -114,6 +116,7 @@ const UpdateInfoForm: FC<Props> = defaultProps => {
                       type="submit"
                       className="button is-text is-large"
                       disabled={isSubmitting}
+                      onClick={cancel}
                     >
                       Cancel
                     </button>
