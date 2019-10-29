@@ -1,11 +1,11 @@
 import { Action } from 'redux';
 
 export enum AuthActionTypes {
-  SignIn = '[Auth] Sign In',
+  SignIn = '[Auth] Login',
   Logout = '[Auth] Logout',
 }
 
-export class SignIn implements Action {
+export class Login implements Action {
   readonly type = AuthActionTypes.SignIn;
 }
 
@@ -13,4 +13,4 @@ export class Logout implements Action {
   readonly type = AuthActionTypes.Logout;
 }
 
-export type AuthActions = SignIn | Logout;
+export type AuthActions = Login | Logout;

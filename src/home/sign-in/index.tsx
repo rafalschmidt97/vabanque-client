@@ -10,8 +10,8 @@ import { RouteComponentProps } from 'react-router';
 
 const gradient = 'linear-gradient(to top, #c31432, #240b36)';
 
-const SignIn = (props: RouteComponentProps) => {
-  const signIn = () => {
+const Login = (props: RouteComponentProps) => {
+  const login = () => {
     props.history.push('user-settings');
   };
 
@@ -30,10 +30,10 @@ const SignIn = (props: RouteComponentProps) => {
       <section className="hero has-margin-top-20">
         <div className="hero-body">
           <div className="columns">
-            <div className="container has-text-centered column" onClick={signIn}>
+            <div className="container has-text-centered column" onClick={login}>
               <LoginFacebook />
             </div>
-            <div className="container has-text-centered column has-margin-top-15" onClick={signIn}>
+            <div className="container has-text-centered column has-margin-top-15" onClick={login}>
               <LoginGoogle />
             </div>
           </div>
@@ -52,4 +52,4 @@ const SignIn = (props: RouteComponentProps) => {
   );
 };
 
-export default SignIn;
+export default Login;
