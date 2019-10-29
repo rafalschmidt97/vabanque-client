@@ -1,10 +1,11 @@
 import React, { FC, useRef, useState } from 'react';
 import ProfilePicture from '../../common/components/profile-picture';
+import accountApi from '../api';
 
-const props = {
-  profilePictureText: '',
+type Props = {
+  profilePictureText: string;
+  setProfilePictureSrc: (result: string) => void;
 };
-type Props = typeof props;
 
 const UploadProfilePicture: FC<Props> = (props: Props) => {
   const [profilePictureSrc, setProfilePictureSrc] = useState('');
@@ -23,6 +24,9 @@ const UploadProfilePicture: FC<Props> = (props: Props) => {
         setProfilePictureSrc(String(reader.result));
       };
       reader.readAsDataURL(file[0]);
+      const data = new FormData();
+      data.append('file', file[0], file[0].name);
+      accountApi.upload(data).then(res => props.setProfilePictureSrc(res.url));
     }
   };
 

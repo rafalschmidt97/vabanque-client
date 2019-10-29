@@ -7,16 +7,19 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import UploadProfilePicture from './upload-profile-picture/upload-profile-picture';
 import Error from '../common/components/error';
 import 'react-phone-input-2/dist/style.css';
+import accountApi from './api';
+import UpdateProfileRequest from './types';
 
 const props = {
   initialProfilePictureText: '',
+  initialProfilePictureSrc: '',
 };
 
 type Props = RouteComponentProps & typeof props;
 
 const initialFormValues = {
   phoneNumber: '',
-  username: '',
+  nickname: '',
 };
 
 type FormValues = typeof initialFormValues;
@@ -29,32 +32,42 @@ const FormSchema = Yup.object().shape<FormValues>({
     .max(10, 'Phone number is too long')
     .matches(phoneRegExp, 'Phone number is not valid')
     .required('Required'),
-  username: Yup.string()
-    .min(3, 'Username is too short')
-    .max(50, 'Username is too long')
+  nickname: Yup.string()
+    .min(3, 'Nickname is too short')
+    .max(50, 'Nickname is too long')
     .required('Required'),
 });
 
-const UpdateInfoForm: FC<Props> = props => {
+const UserSettings: FC<Props> = props => {
   const [profilePictureText, setProfilePictureText] = useState(props.initialProfilePictureText);
+  const [profilePictureSrc, setProfilePictureSrc] = useState(props.initialProfilePictureText);
 
   const onSubmit = (form: FormValues) => {
-    console.log(form);
+    const phoneNumber = '+358' + form.phoneNumber;
+    const profileRequest: UpdateProfileRequest = {
+      nickname: form.nickname,
+      phoneNumber: phoneNumber,
+      avatar: profilePictureSrc,
+    };
+    accountApi.update(profileRequest);
   };
 
   const cancel = () => {
     props.history.push('/');
   };
 
-  const handleUsernameChange = (username: string) => {
-    setProfilePictureText(username);
+  const handleNicknameChange = (nickname: string) => {
+    setProfilePictureText(nickname);
   };
 
   return (
     <>
       <section className={`hero  ${styles.gradient}`}>
         <div className={styles['hero-body']}>
-          <UploadProfilePicture profilePictureText={profilePictureText} />
+          <UploadProfilePicture
+            profilePictureText={profilePictureText}
+            setProfilePictureSrc={setProfilePictureSrc}
+          />
         </div>
       </section>
 
@@ -92,22 +105,22 @@ const UpdateInfoForm: FC<Props> = props => {
               <div className="control">
                 <span className="icon is-large fa-lg has-margin-left-50">
                   <i className="fas fa-user has-margin-right-10" />
-                  <label className="label is-large">Username</label>
+                  <label className="label is-large">Nickname</label>
                 </span>
               </div>
               <div className="field">
                 <div className="control ">
                   <Field
-                    name="username"
+                    name="nickname"
                     className={classNames('input is-large', {
-                      'is-danger': touched.username && errors.username,
+                      'is-danger': touched.nickname && errors.nickname,
                     })}
                     onBlur={(e: React.ChangeEvent<HTMLInputElement>) => {
                       handleBlur(e);
-                      handleUsernameChange(e.target.value);
+                      handleNicknameChange(e.target.value);
                     }}
                   />
-                  <Error fieldName="username" isVisible={!!(touched.username && errors.username)} />
+                  <Error fieldName="nickname" isVisible={!!(touched.nickname && errors.nickname)} />
                 </div>
               </div>
 
@@ -142,4 +155,4 @@ const UpdateInfoForm: FC<Props> = props => {
   );
 };
 
-export default withRouter(UpdateInfoForm);
+export default withRouter(UserSettings);
