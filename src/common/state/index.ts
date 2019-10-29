@@ -4,12 +4,15 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import actionToPlainObject from './middleware/action-to-plain-object';
 import isProduction from '../utils/is-production';
+import { AuthState, AuthReducer } from '../../core/auth/reducer';
 
 export interface RootState {
+  auth: AuthState;
   overview: OverviewState;
 }
 
 const RootReducers: Reducer = combineReducers({
+  auth: AuthReducer,
   overview: OverviewReducer,
 });
 
