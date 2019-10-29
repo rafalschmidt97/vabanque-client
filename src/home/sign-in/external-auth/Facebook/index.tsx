@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import styles from '../../styles.module.scss';
 import { Token } from '../types';
 import authApi from '../api';
 import useLocalStorage from 'react-use-localstorage';
+import { Login } from '../../../../core/auth/actions';
+import { useDispatch } from 'react-redux';
 
 const LoginFacebook = () => {
+  const dispatchLogin = useDispatch<Dispatch<Login>>();
   const [, setAccessToken] = useLocalStorage('accessToken', '');
   const [, setRefreshToken] = useLocalStorage('refreshToken', '');
 
@@ -20,7 +23,10 @@ const LoginFacebook = () => {
   return (
     <button
       className={`${styles.start} button is-rounded is-large is-facebook is-full-width`}
-      onClick={login}
+      onClick={() => {
+        login();
+        dispatchLogin(new Login());
+      }}
     >
       <span className="icon">
         <i className="fab fa-facebook-f is-white"></i>
