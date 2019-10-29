@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import UploadProfilePicture from './upload-profile-picture/upload-profile-picture';
 import Error from '../common/components/error';
+import 'react-phone-input-2/dist/style.css';
 
 const props = {
   initialProfilePictureText: '',
@@ -14,15 +15,19 @@ const props = {
 type Props = RouteComponentProps & typeof props;
 
 const initialFormValues = {
-  email: '',
+  phoneNumber: '',
   username: '',
 };
 
 type FormValues = typeof initialFormValues;
 
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
 const FormSchema = Yup.object().shape<FormValues>({
-  email: Yup.string()
-    .email('Invalid email')
+  phoneNumber: Yup.string()
+    .min(8, 'Phone number is too short')
+    .max(10, 'Phone number is too long')
+    .matches(phoneRegExp, 'Phone number is not valid')
     .required('Required'),
   username: Yup.string()
     .min(3, 'Username is too short')
@@ -60,22 +65,28 @@ const UpdateInfoForm: FC<Props> = props => {
           onSubmit={onSubmit}
           render={({ errors, touched, isSubmitting, handleBlur }: FormikProps<FormValues>) => (
             <Form className="container">
-              <div className="control">
+              <div className="control ">
                 <span className="icon is-large fa-lg has-margin-left-25">
-                  <i className="fas fa-envelope has-margin-right-10" />
-                  <label className="label is-large">Email</label>
+                  <i className="fas fa-phone-alt has-margin-right-10" />
+                  <label className="label is-large ">Phone</label>
                 </span>
               </div>
-              <div className="field">
-                <div className="control ">
+              <div className="field has-addons">
+                <p className="control">
+                  <a className={`button is-static is-medium ${styles.number}`}>+358</a>
+                </p>
+                <div className="control">
                   <Field
-                    type="email"
-                    name="email"
+                    type="tel"
+                    name="phoneNumber"
                     className={classNames('input is-large', {
-                      'is-danger': touched.email && errors.email,
+                      'is-danger': touched.phoneNumber && errors.phoneNumber,
                     })}
                   />
-                  <Error fieldName="email" isVisible={!!(touched.email && errors.email)} />
+                  <Error
+                    fieldName="phoneNumber"
+                    isVisible={!!(touched.phoneNumber && errors.phoneNumber)}
+                  />
                 </div>
               </div>
               <div className="control">
