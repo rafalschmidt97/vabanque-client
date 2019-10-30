@@ -1,4 +1,5 @@
-import { Token } from './../../home/sign-in/external-auth/types';
+import { Token } from '../../../home/sign-in/external-auth/types';
+
 class LocalStorageService {
   setTokens(token: Token) {
     localStorage.setItem('accessToken', token.accessToken);

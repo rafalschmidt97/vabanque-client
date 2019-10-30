@@ -10,7 +10,7 @@ import 'react-phone-input-2/dist/style.css';
 import accountApi from './api';
 import UpdateProfileRequest from './types';
 import { useDispatch } from 'react-redux';
-import { Logout } from '../core/auth/actions';
+import { Logout } from '../core/auth/state/actions';
 
 const props = {
   initialProfilePictureText: '',

@@ -17,6 +17,12 @@ const UploadProfilePicture: FC<Props> = (props: Props) => {
     }
   };
 
+  function uploadFile(file: FileList, props: Props) {
+    const data = new FormData();
+    data.append('file', file[0], file[0].name);
+    accountApi.upload(data).then(res => props.setProfilePictureSrc(res.url));
+  }
+
   const handleFileChange = (file: FileList | null) => {
     if (file != null && file[0] != null) {
       const reader = new FileReader();
@@ -24,9 +30,8 @@ const UploadProfilePicture: FC<Props> = (props: Props) => {
         setProfilePictureSrc(String(reader.result));
       };
       reader.readAsDataURL(file[0]);
-      const data = new FormData();
-      data.append('file', file[0], file[0].name);
-      accountApi.upload(data).then(res => props.setProfilePictureSrc(res.url));
+
+      uploadFile(file, props);
     }
   };
 

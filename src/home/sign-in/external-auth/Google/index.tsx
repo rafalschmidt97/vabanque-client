@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from '../../styles.module.scss';
 import authApi from '../api';
-import { Login } from '../../../../core/auth/actions';
+import { Login } from '../../../../core/auth/state/actions';
 import { Dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
-import localStorageService from '../../../../core/auth/localStorageService';
+import localStorageService from '../../../../core/auth/state/localStorageService';
 
 const LoginGoogle = () => {
   const dispatchLogin = useDispatch<Dispatch<Login>>();

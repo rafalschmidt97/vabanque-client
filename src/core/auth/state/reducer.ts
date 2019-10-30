@@ -1,10 +1,7 @@
 import { Reducer } from 'redux';
 import { AuthActions, AuthActionTypes } from './actions';
 import localStorageService from './localStorageService';
-
-export interface AuthState {
-  isAuthenticated: boolean;
-}
+import { AuthState } from '../types';
 
 const initialState: AuthState = {
   isAuthenticated: false,

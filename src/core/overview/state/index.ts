@@ -1,10 +1,12 @@
-import { OverviewReducer, OverviewState } from '../../panel/overview/reducer';
+import { OverviewReducer } from '../../../panel/overview/reducer';
+import { OverviewState } from '../../../panel/overview/OverviewState';
 import { applyMiddleware, combineReducers, compose, createStore, Reducer, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import actionToPlainObject from './middleware/action-to-plain-object';
-import isProduction from '../utils/is-production';
-import { AuthState, AuthReducer } from '../../core/auth/reducer';
+import actionToPlainObject from '../../../common/middleware/action-to-plain-object';
+import isProduction from '../../../common/utils/is-production';
+import { AuthReducer } from '../../auth/state/reducer';
+import { AuthState } from '../../auth/types';
 
 export interface RootState {
   auth: AuthState;

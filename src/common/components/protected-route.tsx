@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Redirect, Route, RouteProps } from 'react-router';
 import { useSelector } from 'react-redux';
-import { RootState } from '../state';
+import { RootState } from '../../core/overview/state';
 
 export interface ProtectedRouteProps extends RouteProps {
   authenticationPath: string;

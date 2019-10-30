@@ -1,9 +1,9 @@
 import React, { Dispatch } from 'react';
 import styles from '../../styles.module.scss';
 import authApi from '../api';
-import { Login } from '../../../../core/auth/actions';
+import { Login } from '../../../../core/auth/state/actions';
 import { useDispatch } from 'react-redux';
-import localStorageService from '../../../../core/auth/localStorageService';
+import localStorageService from '../../../../core/auth/state/localStorageService';
 
 const LoginFacebook = () => {
   const dispatchLogin = useDispatch<Dispatch<Login>>();

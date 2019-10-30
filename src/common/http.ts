@@ -1,6 +1,6 @@
 import axios from 'axios';
 import isProduction from './utils/is-production';
-import localStorageService from '../core/auth/localStorageService';
+import localStorageService from '../core/auth/state/localStorageService';
 
 const httpClient = axios.create({
   baseURL: isProduction ? 'https://example.com/api' : 'http://localhost:8080',
