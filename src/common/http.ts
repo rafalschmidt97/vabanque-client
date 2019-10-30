@@ -1,5 +1,6 @@
 import axios from 'axios';
 import isProduction from './utils/is-production';
+import localStorageService from '../core/auth/localStorageService';
 
 const httpClient = axios.create({
   baseURL: isProduction ? 'https://example.com/api' : 'http://localhost:8080',
@@ -7,7 +8,7 @@ const httpClient = axios.create({
 
 httpClient.interceptors.request.use(
   config => {
-    const token = localStorage.getItem('accessToken');
+    const token = localStorageService.getAccessToken();
     if (token) {
       config.headers.Authorization = `Bearer: ${token}`;
     }
