@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import UploadProfilePicture from './upload-profile-picture/upload-profile-picture';
 import Error from '../common/components/error';
-import 'react-phone-input-2/dist/style.css';
 import accountApi from './api';
 import UpdateProfileRequest from './types';
 import { useDispatch } from 'react-redux';
