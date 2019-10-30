@@ -53,6 +53,7 @@ const UserSettings: FC<Props> = props => {
       avatar: profilePictureSrc,
     };
     accountApi.update(profileRequest);
+    props.history.push('/overview');
   };
 
   const cancel = () => {
