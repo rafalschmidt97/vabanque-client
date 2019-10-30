@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 import { AuthActions, AuthActionTypes } from './actions';
+import localStorageService from './localStorageService';
 
 export interface AuthState {
   isAuthenticated: boolean;
@@ -18,6 +19,7 @@ export const AuthReducer: Reducer<AuthState, AuthActions> = (state = initialStat
       };
     }
     case AuthActionTypes.Logout: {
+      localStorageService.clear();
       return {
         ...state,
         isAuthenticated: false,

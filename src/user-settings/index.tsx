@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, Dispatch } from 'react';
 import { Field, Form, Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import styles from './styles.module.scss';
@@ -9,6 +9,8 @@ import Error from '../common/components/error';
 import 'react-phone-input-2/dist/style.css';
 import accountApi from './api';
 import UpdateProfileRequest from './types';
+import { useDispatch } from 'react-redux';
+import { Logout } from '../core/auth/actions';
 
 const props = {
   initialProfilePictureText: '',
@@ -39,6 +41,7 @@ const FormSchema = Yup.object().shape<FormValues>({
 });
 
 const UserSettings: FC<Props> = props => {
+  const dispatchLogout = useDispatch<Dispatch<Logout>>();
   const [profilePictureText, setProfilePictureText] = useState(props.initialProfilePictureText);
   const [profilePictureSrc, setProfilePictureSrc] = useState(props.initialProfilePictureText);
 
@@ -140,7 +143,10 @@ const UserSettings: FC<Props> = props => {
                       type="submit"
                       className="button is-text is-large"
                       disabled={isSubmitting}
-                      onClick={cancel}
+                      onClick={() => {
+                        cancel();
+                        dispatchLogout(new Logout());
+                      }}
                     >
                       Cancel
                     </button>

@@ -12,6 +12,10 @@ class LocalStorageService {
   getRefreshToken(): string | null {
     return localStorage.getItem('refreshToken');
   }
+
+  clear(): void {
+    localStorage.clear();
+  }
 }
 
 const localStorageService = new LocalStorageService();
