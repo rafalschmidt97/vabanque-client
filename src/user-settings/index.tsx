@@ -10,6 +10,7 @@ import Nickname from './form/field/nickname';
 import Phone from './form/field/phone';
 import Cancel from './form/button/cancel';
 import { useHistory } from 'react-router';
+import Helmet from 'react-helmet';
 
 type Props = {
   initialProfilePictureText: string;
@@ -55,6 +56,9 @@ const UserSettings: FC<Props> = (props: Props) => {
 
   return (
     <>
+      <Helmet>
+        <title>User Settings</title>
+      </Helmet>
       <section className={`hero  ${styles.gradient}`}>
         <div className={styles['hero-body']}>
           <UploadProfilePicture
