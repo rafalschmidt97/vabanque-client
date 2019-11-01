@@ -1,22 +1,20 @@
-import React, { FC, useState, Dispatch } from 'react';
-import { Field, Form, Formik, FormikProps } from 'formik';
+import React, { FC, useState } from 'react';
+import { Form, Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import styles from './styles.module.scss';
-import classNames from 'classnames';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import UploadProfilePicture from './upload-profile-picture/upload-profile-picture';
-import Error from '../common/components/error';
 import accountApi from './api';
 import UpdateProfileRequest from './types';
-import { useDispatch } from 'react-redux';
-import { Logout } from '../core/auth/state/actions';
+import Update from './form/button/update';
+import Nickname from './form/field/nickname';
+import Phone from './form/field/phone';
+import Cancel from './form/button/cancel';
+import { useHistory } from 'react-router';
 
-const props = {
-  initialProfilePictureText: '',
-  initialProfilePictureSrc: '',
+type Props = {
+  initialProfilePictureText: string;
+  initialProfilePictureSrc: string;
 };
-
-type Props = RouteComponentProps & typeof props;
 
 const initialFormValues = {
   phoneNumber: '',
@@ -29,9 +27,9 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 
 const FormSchema = Yup.object().shape<FormValues>({
   phoneNumber: Yup.string()
+    .matches(phoneRegExp, 'Phone number is not valid')
     .min(8, 'Phone number is too short')
     .max(10, 'Phone number is too long')
-    .matches(phoneRegExp, 'Phone number is not valid')
     .required('Required'),
   nickname: Yup.string()
     .min(3, 'Nickname is too short')
@@ -39,8 +37,8 @@ const FormSchema = Yup.object().shape<FormValues>({
     .required('Required'),
 });
 
-const UserSettings: FC<Props> = props => {
-  const dispatchLogout = useDispatch<Dispatch<Logout>>();
+const UserSettings: FC<Props> = (props: Props) => {
+  const history = useHistory();
   const [profilePictureText, setProfilePictureText] = useState(props.initialProfilePictureText);
   const [profilePictureSrc, setProfilePictureSrc] = useState(props.initialProfilePictureText);
 
@@ -52,15 +50,7 @@ const UserSettings: FC<Props> = props => {
       avatar: profilePictureSrc,
     };
     accountApi.update(profileRequest);
-    props.history.push('/overview');
-  };
-
-  const cancel = () => {
-    props.history.push('/');
-  };
-
-  const handleNicknameChange = (nickname: string) => {
-    setProfilePictureText(nickname);
+    history.push('/overview');
   };
 
   return (
@@ -81,76 +71,17 @@ const UserSettings: FC<Props> = props => {
           onSubmit={onSubmit}
           render={({ errors, touched, isSubmitting, handleBlur }: FormikProps<FormValues>) => (
             <Form className="container">
-              <div className="control ">
-                <span className="icon is-large fa-lg has-margin-left-25">
-                  <i className="fas fa-phone-alt has-margin-right-10" />
-                  <label className="label is-large ">Phone</label>
-                </span>
-              </div>
-              <div className="field has-addons">
-                <p className="control">
-                  <a className={`button is-static is-medium ${styles.number}`}>+358</a>
-                </p>
-                <div className="control">
-                  <Field
-                    type="tel"
-                    name="phoneNumber"
-                    className={classNames('input is-large', {
-                      'is-danger': touched.phoneNumber && errors.phoneNumber,
-                    })}
-                  />
-                  <Error
-                    fieldName="phoneNumber"
-                    isVisible={!!(touched.phoneNumber && errors.phoneNumber)}
-                  />
-                </div>
-              </div>
-              <div className="control">
-                <span className="icon is-large fa-lg has-margin-left-50">
-                  <i className="fas fa-user has-margin-right-10" />
-                  <label className="label is-large">Nickname</label>
-                </span>
-              </div>
-              <div className="field">
-                <div className="control ">
-                  <Field
-                    name="nickname"
-                    className={classNames('input is-large', {
-                      'is-danger': touched.nickname && errors.nickname,
-                    })}
-                    onBlur={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      handleBlur(e);
-                      handleNicknameChange(e.target.value);
-                    }}
-                  />
-                  <Error fieldName="nickname" isVisible={!!(touched.nickname && errors.nickname)} />
-                </div>
-              </div>
+              <Phone hasErrors={!!(touched.phoneNumber && errors.phoneNumber)} />
+              <Nickname
+                hasErrors={!!(touched.nickname && errors.nickname)}
+                setProfilePictureText={setProfilePictureText}
+                handleBlur={handleBlur}
+              />
 
               <footer className={`footer has-background-white center`}>
                 <div className={`field is-flex is-full-width ${styles.bottom} ${styles.between}`}>
-                  <div className="control">
-                    <button
-                      type="submit"
-                      className="button is-primary is-large"
-                      disabled={isSubmitting}
-                    >
-                      Update
-                    </button>
-                  </div>
-                  <div className="control">
-                    <button
-                      type="submit"
-                      className="button is-text is-large"
-                      disabled={isSubmitting}
-                      onClick={() => {
-                        cancel();
-                        dispatchLogout(new Logout());
-                      }}
-                    >
-                      Cancel
-                    </button>
-                  </div>
+                  <Update isSubmitting={isSubmitting} />
+                  <Cancel isSubmitting={isSubmitting} />
                 </div>
               </footer>
             </Form>
@@ -161,4 +92,4 @@ const UserSettings: FC<Props> = props => {
   );
 };
 
-export default withRouter(UserSettings);
+export default UserSettings;
