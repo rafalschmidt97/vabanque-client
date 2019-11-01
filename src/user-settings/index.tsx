@@ -75,12 +75,12 @@ const UserSettings: FC<Props> = (props: Props) => {
           onSubmit={onSubmit}
           render={({ errors, touched, isSubmitting, handleBlur }: FormikProps<FormValues>) => (
             <Form className="container">
-              <Phone hasErrors={!!(touched.phoneNumber && errors.phoneNumber)} />
               <Nickname
                 hasErrors={!!(touched.nickname && errors.nickname)}
                 setProfilePictureText={setProfilePictureText}
                 handleBlur={handleBlur}
               />
+              <Phone hasErrors={!!(touched.phoneNumber && errors.phoneNumber)} />
 
               <footer className={`footer has-background-white center`}>
                 <div className={`field is-flex is-full-width ${styles.bottom} ${styles.between}`}>
