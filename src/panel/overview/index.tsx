@@ -1,13 +1,12 @@
-import React, { useState, useReducer, FC } from 'react';
+import React, { useState, useReducer } from 'react';
 import { IncrementCounter } from './actions';
 import { OverviewReducer } from './reducer';
-import { RouteComponentProps } from 'react-router';
 
-type Props = RouteComponentProps & {
+type Props = {
   initalCounter?: number;
 };
 
-const Overview: FC<Props> = ({ initalCounter = 0 }: Props) => {
+const Overview = ({ initalCounter = 0 }: Props) => {
   const [localCounter, setLocalCounter] = useState(initalCounter);
   const [state, dispatch] = useReducer(OverviewReducer, { counter: initalCounter });
 

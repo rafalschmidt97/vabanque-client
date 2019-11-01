@@ -6,13 +6,15 @@ import logo from './images/logo.png';
 import styles from './styles.module.scss';
 import LoginFacebook from './external-auth/Facebook';
 import LoginGoogle from './external-auth/Google';
-import { RouteComponentProps } from 'react-router';
+import { useHistory } from 'react-router';
 
 const gradient = 'linear-gradient(to top, #c31432, #240b36)';
 
-const Login = (props: RouteComponentProps) => {
+const Login = () => {
+  const history = useHistory();
+
   const login = () => {
-    props.history.push('user-settings');
+    history.push('user-settings');
   };
 
   return (
