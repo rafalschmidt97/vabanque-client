@@ -1,15 +1,19 @@
 import React, { Dispatch } from 'react';
 import styles from '../../styles.module.scss';
-import authApi from '../api';
+import authApi from '../../../../core/auth/api';
 import { Login } from '../../../../core/auth/state/actions';
 import { useDispatch } from 'react-redux';
-import localStorageService from '../../../../core/auth/state/localStorageService';
+import { useHistory } from 'react-router';
 
 const LoginFacebook = () => {
   const dispatchLogin = useDispatch<Dispatch<Login>>();
+  const history = useHistory();
 
   const login = () => {
-    authApi.signIn().then(token => localStorageService.setTokens(token));
+    authApi.signIn().then(token => {
+      dispatchLogin(new Login(token));
+      history.push('user-settings');
+    });
   };
 
   return (
@@ -17,7 +21,6 @@ const LoginFacebook = () => {
       className={`${styles.start} button is-rounded is-large is-facebook is-full-width`}
       onClick={() => {
         login();
-        dispatchLogin(new Login());
       }}
     >
       <span className="icon">

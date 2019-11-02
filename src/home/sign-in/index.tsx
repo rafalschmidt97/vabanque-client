@@ -6,17 +6,10 @@ import logo from './images/logo.png';
 import styles from './styles.module.scss';
 import LoginFacebook from './external-auth/Facebook';
 import LoginGoogle from './external-auth/Google';
-import { useHistory } from 'react-router';
 
 const gradient = 'linear-gradient(to top, #c31432, #240b36)';
 
 const Login = () => {
-  const history = useHistory();
-
-  const login = () => {
-    history.push('user-settings');
-  };
-
   return (
     <>
       <Helmet>
@@ -32,10 +25,10 @@ const Login = () => {
       <section className="hero has-margin-top-20">
         <div className="hero-body">
           <div className="columns">
-            <div className="container has-text-centered column" onClick={login}>
+            <div className="container has-text-centered column">
               <LoginFacebook />
             </div>
-            <div className="container has-text-centered column has-margin-top-15" onClick={login}>
+            <div className="container has-text-centered column has-margin-top-15">
               <LoginGoogle />
             </div>
           </div>

@@ -1,12 +1,18 @@
 import { Action } from 'redux';
 
+import { Token } from '../types';
 export enum AuthActionTypes {
-  SignIn = '[Auth] Login',
+  Login = '[Auth] Login',
   Logout = '[Auth] Logout',
 }
 
 export class Login implements Action {
-  readonly type = AuthActionTypes.SignIn;
+  readonly type = AuthActionTypes.Login;
+  payload: Token;
+
+  constructor(token: Token) {
+    this.payload = token;
+  }
 }
 
 export class Logout implements Action {

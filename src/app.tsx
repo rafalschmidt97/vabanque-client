@@ -8,7 +8,7 @@ import Overview from './panel/overview';
 import ProtectedRoute from './common/components/protected-route';
 import NotFound from './common/components/not-found';
 
-const store = createStoreWithMiddleware();
+export const store = createStoreWithMiddleware();
 
 const App = () => {
   return (

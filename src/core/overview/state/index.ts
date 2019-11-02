@@ -7,6 +7,8 @@ import actionToPlainObject from '../../../common/middleware/action-to-plain-obje
 import isProduction from '../../../common/utils/is-production';
 import { AuthReducer } from '../../auth/state/reducer';
 import { AuthState } from '../../auth/types';
+import clearLocalStorageOnLogout from '../../../common/middleware/clearLocalStorageOnLogout';
+import setTokens from '../../../common/middleware/setTokens';
 
 export interface RootState {
   auth: AuthState;
@@ -19,7 +21,8 @@ const RootReducers: Reducer = combineReducers({
 });
 
 export function createStoreWithMiddleware(): Store {
-  const middleware = applyMiddleware(actionToPlainObject, thunk);
+  const middlewares = [actionToPlainObject, thunk, clearLocalStorageOnLogout, setTokens];
+  const middleware = applyMiddleware(...middlewares);
 
   if (isProduction) {
     return createStore(RootReducers, compose(middleware));

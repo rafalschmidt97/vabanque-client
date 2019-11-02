@@ -1,16 +1,20 @@
 import React from 'react';
 import styles from '../../styles.module.scss';
-import authApi from '../api';
+import authApi from '../../../../core/auth/api';
 import { Login } from '../../../../core/auth/state/actions';
 import { Dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
-import localStorageService from '../../../../core/auth/state/localStorageService';
+import { useHistory } from 'react-router';
 
 const LoginGoogle = () => {
   const dispatchLogin = useDispatch<Dispatch<Login>>();
+  const history = useHistory();
 
   const login = () => {
-    authApi.signIn().then(token => localStorageService.setTokens(token));
+    authApi.signIn().then(token => {
+      dispatchLogin(new Login(token));
+      history.push('user-settings');
+    });
   };
 
   return (
@@ -18,7 +22,6 @@ const LoginGoogle = () => {
       className={`${styles.start} button is-rounded is-large is-google is-full-width `}
       onClick={() => {
         login();
-        dispatchLogin(new Login());
       }}
     >
       <div className="columns is-mobile">
