@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 import { AuthActions, AuthActionTypes } from './actions';
-import { AuthState } from '../types';
+import { AuthState } from './types';
 
 const initialState: AuthState = {
   isAuthenticated: false,

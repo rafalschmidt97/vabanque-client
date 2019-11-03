@@ -4,7 +4,7 @@ import { RefreshRequest } from './../home/sign-in/external-auth/types';
 import { Token } from './../core/auth/types';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import isProduction from './utils/is-production';
-import localStorageService from '../core/auth/state/localStorageService';
+import localStorageService from '../core/auth/localStorageService';
 import authApi from '../core/auth/api';
 
 const refreshTokenEndpoint = 'http://localhost:8080/auth/refresh';
@@ -47,7 +47,7 @@ httpClient.interceptors.response.use(
         Promise.reject(error);
       }
       const refreshRequest: RefreshRequest = {
-        refreshToken: refreshToken!,
+        refreshToken: refreshToken,
       };
 
       removeAuthorizationHeader();
@@ -60,7 +60,7 @@ httpClient.interceptors.response.use(
           localStorageService.setTokens(token);
           return error.config;
         })
-        .catch((error: any) => {
+        .catch((error: AxiosError) => {
           Promise.reject(error);
           store.dispatch(new Logout());
         });

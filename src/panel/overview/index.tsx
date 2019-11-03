@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from 'react';
-import { IncrementCounter } from './actions';
-import { OverviewReducer } from './reducer';
+import { IncrementCounter } from '../../core/overview/state/actions';
+import { OverviewReducer } from '../../core/overview/state/reducer';
 
 type Props = {
   initalCounter?: number;

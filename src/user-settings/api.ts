@@ -1,9 +1,5 @@
-import UpdateProfileRequest from './types';
+import UpdateProfileRequest, { UploadResponse, GetProfileResponse } from './types';
 import httpClient from '../common/http';
-
-interface UploadResponse {
-  url: string;
-}
 
 class AccountApi {
   update(updateProfileRequest: UpdateProfileRequest): Promise<void> {
@@ -12,6 +8,10 @@ class AccountApi {
 
   upload(data: FormData): Promise<UploadResponse> {
     return httpClient.post<UploadResponse>('uploads', data).then(res => res.data);
+  }
+
+  getSelf(): Promise<GetProfileResponse> {
+    return httpClient.get<GetProfileResponse>('/accounts/self').then(res => res.data);
   }
 }
 

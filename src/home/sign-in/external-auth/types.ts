@@ -4,5 +4,5 @@ export interface AuthRequest {
 }
 
 export interface RefreshRequest {
-  refreshToken: string;
+  refreshToken: string | null;
 }

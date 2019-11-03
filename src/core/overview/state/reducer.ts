@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 import { OverviewActions, OverviewActionTypes } from './actions';
-import { OverviewState } from './OverviewState';
+import { OverviewState } from './types';
 
 const initialState: OverviewState = {
   counter: 2,

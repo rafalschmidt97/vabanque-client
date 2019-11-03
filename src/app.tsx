@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStoreWithMiddleware } from './core/overview/state';
+import { createStoreWithMiddleware } from './core/state';
 import Login from './home/sign-in';
 import UserSettings from './user-settings';
 import Overview from './panel/overview';
