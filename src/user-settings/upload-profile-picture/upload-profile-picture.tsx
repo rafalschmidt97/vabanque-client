@@ -20,7 +20,7 @@ const UploadProfilePicture: FC<Props> = (props: Props) => {
   function uploadFile(file: FileList, props: Props) {
     const data = new FormData();
     data.append('file', file[0], file[0].name);
-    accountApi.upload(data).then(res => props.setProfilePictureSrc(res.url));
+    accountApi.uploadProfilePicture(data).then(res => props.setProfilePictureSrc(res.url));
   }
 
   const handleFileChange = (file: FileList | null) => {

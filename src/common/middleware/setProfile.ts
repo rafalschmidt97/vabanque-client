@@ -8,7 +8,7 @@ import accountApi from '../../user-settings/api';
 
 const updateProfile: Middleware = () => next => action => {
   if (action.type === AuthActionTypes.Login || action.type === ProfileActionTypes.UpdateProfile) {
-    accountApi.getSelf().then(profile => {
+    accountApi.get().then(profile => {
       const profileState: ProfileState = {
         id: profile.id,
         email: profile.email,

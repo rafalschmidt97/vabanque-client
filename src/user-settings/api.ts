@@ -6,11 +6,11 @@ class AccountApi {
     return httpClient.put<UpdateProfileRequest>(`/accounts/self`, updateProfileRequest).then();
   }
 
-  upload(data: FormData): Promise<UploadResponse> {
+  uploadProfilePicture(data: FormData): Promise<UploadResponse> {
     return httpClient.post<UploadResponse>('uploads', data).then(res => res.data);
   }
 
-  getSelf(): Promise<GetProfileResponse> {
+  get(): Promise<GetProfileResponse> {
     return httpClient.get<GetProfileResponse>('/accounts/self').then(res => res.data);
   }
 }
