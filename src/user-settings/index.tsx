@@ -15,6 +15,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../core/state';
 import phoneNumberService from '../common/utils/phoneNumberService';
 import { UpdateProfile } from '../core/profile/state/actions';
+import { AxiosError } from 'axios';
 
 const initialFormValues = {
   phoneNumber: '',
@@ -62,18 +63,26 @@ const UserSettings: FC<Props> = (props: Props) => {
   }, [initialNickname, initialPhoneNumber]);
 
   const history = useHistory();
-
-  const onSubmit = (form: FormValues) => {
+  const onSubmit = (form: FormValues, setFieldError: (field: string, message: string) => void) => {
     const phoneNumber = phoneNumberService.appendCountryCode(form.phoneNumber);
     const profileRequest: UpdateProfileRequest = {
       nickname: form.nickname,
       phoneNumber: phoneNumber,
       avatar: profilePictureSrc,
     };
-    accountApi.update(profileRequest).then(() => {
-      dispatchUpdateProfile(new UpdateProfile());
-    });
-    history.push('/overview');
+    accountApi
+      .update(profileRequest)
+      .then(() => {
+        dispatchUpdateProfile(new UpdateProfile());
+        history.push('/overview');
+      })
+      .catch((error: AxiosError) => {
+        if (error.response !== undefined) {
+          if (error.response.status === 409) {
+            setFieldError('nickname', 'That nickname already exists');
+          }
+        }
+      });
   };
 
   return (
@@ -93,9 +102,11 @@ const UserSettings: FC<Props> = (props: Props) => {
       <section className="section">
         <Formik
           validationSchema={FormSchema}
-          initialValues={formValues!}
+          initialValues={formValues}
           enableReinitialize={true}
-          onSubmit={onSubmit}
+          onSubmit={(values, { setFieldError }) => {
+            onSubmit(values, setFieldError);
+          }}
           render={({ errors, touched, isSubmitting, handleBlur }: FormikProps<FormValues>) => (
             <Form className="container">
               <Nickname

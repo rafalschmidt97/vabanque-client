@@ -1,7 +1,6 @@
 import { Logout } from './../core/auth/state/actions';
 import { store } from './../app';
 import { RefreshRequest } from './../home/sign-in/external-auth/types';
-import { Token } from './../core/auth/types';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import isProduction from './utils/is-production';
 import localStorageService from '../core/auth/localStorageService';
@@ -29,14 +28,14 @@ httpClient.interceptors.response.use(
   response => {
     return response;
   },
-  (error: AxiosError) => {
+  async (error: AxiosError) => {
     if (error.code !== forbidden) {
-      Promise.reject(error);
+      return Promise.reject(error);
     }
 
     if (error.config.url === refreshTokenEndpoint) {
       localStorageService.clear();
-      Promise.reject(error);
+      return Promise.reject(error);
     }
 
     if (!isAlreadyFetchingAccessToken) {
@@ -44,7 +43,7 @@ httpClient.interceptors.response.use(
       const refreshToken = localStorageService.getRefreshToken();
 
       if (refreshToken == null) {
-        Promise.reject(error);
+        return Promise.reject(error);
       }
       const refreshRequest: RefreshRequest = {
         refreshToken: refreshToken,
@@ -52,32 +51,27 @@ httpClient.interceptors.response.use(
 
       removeAuthorizationHeader();
 
-      return authApi
-        .refreshToken(refreshRequest)
-        .then((token: Token) => {
-          isAlreadyFetchingAccessToken = false;
-          setAuthorizationHeader(error.config, token.accessToken);
-          localStorageService.setTokens(token);
-          return error.config;
-        })
-        .catch((error: AxiosError) => {
-          Promise.reject(error);
-          store.dispatch(new Logout());
-        });
+      try {
+        const token = await authApi.refreshToken(refreshRequest);
+        isAlreadyFetchingAccessToken = false;
+        setAuthorizationHeader(error.config, token.accessToken);
+        localStorageService.setTokens(token);
+        return error.config;
+      } catch (error) {
+        store.dispatch(new Logout());
+        return Promise.reject(error);
+      }
     }
-    Promise.reject(error);
+    return Promise.reject(error);
   },
 );
 
-httpClient.interceptors.request.use(
-  config => {
-    const accessToken = localStorageService.getAccessToken();
-    if (accessToken && !isAlreadyFetchingAccessToken) {
-      setAuthorizationHeader(config, accessToken);
-    }
-    return config;
-  },
-  error => Promise.reject(error),
-);
+httpClient.interceptors.request.use(config => {
+  const accessToken = localStorageService.getAccessToken();
+  if (accessToken && !isAlreadyFetchingAccessToken) {
+    setAuthorizationHeader(config, accessToken);
+  }
+  return config;
+});
 
 export default httpClient;

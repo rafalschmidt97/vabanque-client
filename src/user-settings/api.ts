@@ -1,9 +1,10 @@
 import UpdateProfileRequest, { UploadResponse, GetProfileResponse } from './types';
 import httpClient from '../common/http';
+import { AxiosResponse } from 'axios';
 
 class AccountApi {
-  update(updateProfileRequest: UpdateProfileRequest): Promise<void> {
-    return httpClient.put<UpdateProfileRequest>(`/accounts/self`, updateProfileRequest).then();
+  update(updateProfileRequest: UpdateProfileRequest): Promise<AxiosResponse<UpdateProfileRequest>> {
+    return httpClient.put<UpdateProfileRequest>(`/accounts/self`, updateProfileRequest);
   }
 
   uploadProfilePicture(data: FormData): Promise<UploadResponse> {
