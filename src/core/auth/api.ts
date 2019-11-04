@@ -1,6 +1,6 @@
-import { RefreshRequest } from './../../home/sign-in/external-auth/types';
+import { RefreshRequest } from '../../home/login/external-auth/types';
 import { Token } from './types';
-import { AuthRequest } from '../../home/sign-in/external-auth/types';
+import { AuthRequest } from '../../home/login/external-auth/types';
 import httpClient from '../../common/http';
 
 class AuthApi {

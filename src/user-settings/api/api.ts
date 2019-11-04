@@ -1,5 +1,5 @@
 import UpdateProfileRequest, { UploadResponse, GetProfileResponse } from './types';
-import httpClient from '../common/http';
+import httpClient from '../../common/http';
 import { AxiosResponse } from 'axios';
 
 class AccountApi {

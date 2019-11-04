@@ -9,11 +9,11 @@ import LoginGoogle from './external-auth/Google';
 
 const gradient = 'linear-gradient(to top, #c31432, #240b36)';
 
-const Login = () => {
+const LoginComponent = () => {
   return (
     <>
       <Helmet>
-        <title>Sign in</title>
+        <title>Login</title>
       </Helmet>
       <section className="section">
         <div className="container">
@@ -47,4 +47,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginComponent;

@@ -1,12 +1,12 @@
 import { Logout } from './../core/auth/state/actions';
 import { store } from './../app';
-import { RefreshRequest } from './../home/sign-in/external-auth/types';
+import { RefreshRequest } from '../home/login/external-auth/types';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-import isProduction from './utils/is-production';
+import isProduction from './util/is-production';
 import localStorageService from '../core/auth/localStorageService';
 import authApi from '../core/auth/api';
 
-const refreshTokenEndpoint = 'http://localhost:8080/auth/refresh';
+const refreshTokenEndpoint = '/auth/refresh';
 const forbidden = '403';
 
 const httpClient = axios.create({
@@ -52,10 +52,10 @@ httpClient.interceptors.response.use(
       removeAuthorizationHeader();
 
       try {
-        const token = await authApi.refreshToken(refreshRequest);
+        const tokens = await authApi.refreshToken(refreshRequest);
         isAlreadyFetchingAccessToken = false;
-        setAuthorizationHeader(error.config, token.accessToken);
-        localStorageService.setTokens(token);
+        setAuthorizationHeader(error.config, tokens.accessToken);
+        localStorageService.setTokens(tokens);
         return error.config;
       } catch (error) {
         store.dispatch(new Logout());
@@ -68,7 +68,8 @@ httpClient.interceptors.response.use(
 
 httpClient.interceptors.request.use(config => {
   const accessToken = localStorageService.getAccessToken();
-  if (accessToken && !isAlreadyFetchingAccessToken) {
+
+  if (accessToken && config.url !== refreshTokenEndpoint) {
     setAuthorizationHeader(config, accessToken);
   }
   return config;

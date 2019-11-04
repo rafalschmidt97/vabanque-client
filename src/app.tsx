@@ -2,11 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStoreWithMiddleware } from './core/state';
-import Login from './home/sign-in';
+import LoginComponent from './home/login';
 import UserSettings from './user-settings';
 import Overview from './panel/overview';
-import ProtectedRoute from './common/components/protected-route';
-import NotFound from './common/components/not-found';
+import ProtectedRoute from './common/component/protected-route';
+import NotFound from './common/component/not-found';
+import UserRoute from './common/component/user-route';
 
 export const store = createStoreWithMiddleware();
 
@@ -15,7 +16,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route exact path="/login" component={Login} />
+          <UserRoute path="/login" component={LoginComponent} />
           <ProtectedRoute path="/user-settings" component={UserSettings} />
           <ProtectedRoute path="/overview" component={Overview} />
           <Redirect exact from="/" to="login" />

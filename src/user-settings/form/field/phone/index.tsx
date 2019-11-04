@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field } from 'formik';
-import Error from '../../../../common/components/error';
+import Error from '../../../../common/component/error';
 import classNames from 'classnames';
 import styles from './styles.module.scss';
 

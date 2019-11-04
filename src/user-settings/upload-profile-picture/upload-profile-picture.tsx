@@ -1,9 +1,8 @@
 import React, { FC, useRef, useState } from 'react';
-import ProfilePicture from '../../common/components/profile-picture';
-import accountApi from '../api';
+import ProfilePicture from '../../common/component/profile-picture';
+import accountApi from '../api/api';
 
 type Props = {
-  profilePictureText: string;
   setProfilePictureSrc: (result: string) => void;
 };
 
@@ -38,11 +37,7 @@ const UploadProfilePicture: FC<Props> = (props: Props) => {
   return (
     <>
       <div className="container has-text-centered has-height-150" onClick={uploadProfilePicture}>
-        <ProfilePicture
-          profilePictureSrc={profilePictureSrc}
-          profilePictureText={props.profilePictureText}
-          size="150"
-        />
+        <ProfilePicture profilePictureSrc={profilePictureSrc} size="150" />
         <input
           type="file"
           className="is-invisible-touch"

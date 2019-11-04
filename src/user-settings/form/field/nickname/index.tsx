@@ -1,14 +1,10 @@
 import React from 'react';
 import { Field } from 'formik';
-import Error from '../../../../common/components/error';
+import Error from '../../../../common/component/error';
 import classNames from 'classnames';
 
 type Props = {
   hasErrors: boolean;
-  setProfilePictureText: (nickname: string) => void;
-  handleBlur<T = string>(
-    fieldOrEvent: T,
-  ): T extends string ? ((e: React.ChangeEvent<HTMLInputElement>) => void) : void;
 };
 
 const NicknameField = (props: Props) => {
@@ -27,10 +23,6 @@ const NicknameField = (props: Props) => {
             className={classNames('input is-large', {
               'is-danger': props.hasErrors,
             })}
-            onBlur={(e: React.ChangeEvent<HTMLInputElement>) => {
-              props.handleBlur(e);
-              props.setProfilePictureText(e.target.value);
-            }}
           />
           <Error fieldName="nickname" isVisible={props.hasErrors} />
         </div>

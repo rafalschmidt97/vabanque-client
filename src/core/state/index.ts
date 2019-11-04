@@ -6,7 +6,7 @@ import { applyMiddleware, combineReducers, compose, createStore, Reducer, Store 
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import actionToPlainObject from '../../common/middleware/action-to-plain-object';
-import isProduction from '../../common/utils/is-production';
+import isProduction from '../../common/util/is-production';
 import { AuthReducer } from '../auth/state/reducer';
 import clearLocalStorageOnLogout from '../../common/middleware/clearLocalStorageOnLogout';
 import setTokens from '../../common/middleware/setTokens';

@@ -1,18 +1,21 @@
 import React, { FC } from 'react';
 import Avatar from 'react-avatar';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../core/state';
 
 const props = {
   profilePictureSrc: '',
-  profilePictureText: '',
   size: '20',
 };
 
 type Props = typeof props;
 
 const ProfilePicture: FC<Props> = defaultProps => {
+  const nickname = useSelector((state: RootState) => state.profile.nickname);
+
   return (
     <Avatar
-      name={defaultProps.profilePictureText}
+      name={nickname}
       round={true}
       size={defaultProps.size}
       src={defaultProps.profilePictureSrc}
