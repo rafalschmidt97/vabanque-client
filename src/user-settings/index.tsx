@@ -38,7 +38,11 @@ const UserSettings = () => {
   }, [initialNickname, initialPhoneNumber]);
 
   const history = useHistory();
-  const onSubmit = (form: FormValues, setFieldError: (field: string, message: string) => void) => {
+  const onSubmit = (
+    form: FormValues,
+    setFieldError: (field: string, message: string) => void,
+    setSubmitting: (isSubmitting: boolean) => void,
+  ) => {
     const phoneNumber = phoneNumberService.appendCountryCode(form.phoneNumber);
     const profileRequest: UpdateProfileRequest = {
       nickname: form.nickname,
@@ -55,6 +59,7 @@ const UserSettings = () => {
         if (error.response !== undefined) {
           if (error.response.status === 409) {
             setFieldError('nickname', 'That nickname already exists');
+            setSubmitting(false);
           }
         }
       });
@@ -76,8 +81,8 @@ const UserSettings = () => {
           validationSchema={FormSchema}
           initialValues={formValues}
           enableReinitialize={true}
-          onSubmit={(values, { setFieldError }) => {
-            onSubmit(values, setFieldError);
+          onSubmit={(values, { setFieldError, setSubmitting }) => {
+            onSubmit(values, setFieldError, setSubmitting);
           }}
           render={({ errors, touched, isSubmitting }: FormikProps<FormValues>) => (
             <Form className="container">
