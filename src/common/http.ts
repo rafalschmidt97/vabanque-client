@@ -7,7 +7,8 @@ import localStorageService from '../core/auth/localStorageService';
 import authApi from '../core/auth/api';
 
 const refreshTokenEndpoint = '/auth/refresh';
-const forbidden = '403';
+const unauthorized = 401;
+const forbidden = 403;
 
 const httpClient = axios.create({
   baseURL: isProduction ? 'https://example.com/api' : 'http://localhost:8080',
@@ -29,8 +30,11 @@ httpClient.interceptors.response.use(
     return response;
   },
   async (error: AxiosError) => {
-    if (error.code !== forbidden) {
-      return Promise.reject(error);
+    if (error.response !== undefined) {
+      console.log(error.response.status);
+      if (error.response.status !== forbidden && error.response.status !== unauthorized) {
+        return Promise.reject(error);
+      }
     }
 
     if (error.config.url === refreshTokenEndpoint) {
