@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import phoneNumberService from '../common/util/phoneNumberService';
+import phoneNumberService from '../../common/util/phoneNumberService';
 
 export const initialFormValues = {
   phoneNumber: '',

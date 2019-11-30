@@ -1,5 +1,5 @@
 import React, { FC, useRef, useState } from 'react';
-import ProfilePicture from '../../common/component/profile-picture';
+import ProfilePicture from '../../../common/component/profile-picture';
 import accountApi from '../api/api';
 
 type Props = {
