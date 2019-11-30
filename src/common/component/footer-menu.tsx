@@ -5,9 +5,9 @@ const FooterMenu = () => {
   return (
     <>
       <div className={`${styles.bottom} buttons has-addons is-fullwidth  is-centered`}>
-        <div className={`${styles.third} button is-large is-primary`}>Game</div>
-        <div className={`${styles.thirdish} button is-large is-primary`}>Money</div>
-        <div className={`${styles.third} button is-large is-primary`}>Settings</div>
+        <div className={`${styles.third} button is-large has-text-danger`}>Game</div>
+        <div className={`${styles.thirdish} button is-large has-text-warning`}>Money</div>
+        <div className={`${styles.third} button is-large has-text-info`}>Settings</div>
       </div>
     </>
   );
