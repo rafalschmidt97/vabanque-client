@@ -31,7 +31,6 @@ httpClient.interceptors.response.use(
   },
   async (error: AxiosError) => {
     if (error.response !== undefined) {
-      console.log(error.response.status);
       if (error.response.status !== forbidden && error.response.status !== unauthorized) {
         return Promise.reject(error);
       }
