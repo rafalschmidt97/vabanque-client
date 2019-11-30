@@ -1,8 +1,8 @@
 import { Action } from 'redux';
 
 export enum OverviewActionTypes {
-  IncrementCounter = '[Panel] Increment Counter',
-  UpdateCounter = '[Panel] Update Counter',
+  IncrementCounter = '[Overview] Increment Counter',
+  UpdateCounter = '[Overview] Update Counter',
 }
 
 export class IncrementCounter implements Action {
