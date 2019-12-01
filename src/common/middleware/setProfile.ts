@@ -4,7 +4,7 @@ import { SetProfile } from '../../core/profile/state/actions';
 import { store } from '../../app';
 import { Middleware } from 'redux';
 import { AuthActionTypes } from '../../core/auth/state/actions';
-import accountApi from '../../user-settings/update-profile-form/api/api';
+import accountApi from '../../settings/update-profile-form/api/api';
 
 const updateProfile: Middleware = () => next => action => {
   if (action.type === AuthActionTypes.Login || action.type === ProfileActionTypes.UpdateProfile) {
