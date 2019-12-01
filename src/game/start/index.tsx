@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import FooterMenu from '../../common/component/footer-menu';
 
-const GameStart = () => {
+const Start = () => {
   return (
     <>
       <Helmet>
@@ -28,4 +28,4 @@ const GameStart = () => {
     </>
   );
 };
-export default GameStart;
+export default Start;
