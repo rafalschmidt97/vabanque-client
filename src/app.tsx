@@ -9,6 +9,7 @@ import NotFound from './common/component/not-found';
 import UserRoute from './common/component/user-route';
 import Settings from './settings';
 import UpdateProfileForm from './settings/update-profile-form';
+import Game from './game';
 
 export const store = createStoreWithMiddleware();
 
@@ -20,6 +21,7 @@ const App = () => {
           <UserRoute path="/login" component={LoginComponent} />
           <ProtectedRoute path="/settings" component={Settings} />
           <ProtectedRoute path="/update-profile" component={UpdateProfileForm} />
+          <ProtectedRoute path="/game" component={Game} />
           <ProtectedRoute path="/overview" component={Overview} />
           <Redirect exact from="/" to="login" />
           <Route component={NotFound} />
