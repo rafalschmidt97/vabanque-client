@@ -6,3 +6,7 @@ export interface AuthRequest {
 export interface RefreshRequest {
   refreshToken: string | null;
 }
+
+export interface LogoutRequest {
+  refreshToken: string | null;
+}

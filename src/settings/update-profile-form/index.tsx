@@ -11,13 +11,13 @@ import Nickname from './form/field/nickname';
 import Phone from './form/field/phone';
 import Cancel from './form/button/cancel';
 import Helmet from 'react-helmet';
-import { RootState } from '../core/state';
-import phoneNumberService from '../common/util/phoneNumberService';
-import { UpdateProfile } from '../core/profile/state/actions';
+import { RootState } from '../../core/state';
+import phoneNumberService from '../../common/util/phoneNumberService';
+import { UpdateProfile } from '../../core/profile/state/actions';
 import { AxiosError } from 'axios';
 import UpdateProfileRequest from './api/types';
 
-const UserSettings = () => {
+const UpdateProfileForm = () => {
   const [profilePictureSrc, setProfilePictureSrc] = useState('');
   const initialNickname = useSelector((state: RootState) => state.profile.nickname);
   const initialPhoneNumber = useSelector((state: RootState) => state.profile.phoneNumber);
@@ -68,7 +68,7 @@ const UserSettings = () => {
   return (
     <>
       <Helmet>
-        <title>User Settings</title>
+        <title>Update Profile</title>
       </Helmet>
       <section className={`hero ${styles.gradient}`}>
         <div className={styles['hero-body']}>
@@ -103,4 +103,4 @@ const UserSettings = () => {
   );
 };
 
-export default UserSettings;
+export default UpdateProfileForm;

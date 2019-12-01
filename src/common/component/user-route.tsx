@@ -20,7 +20,7 @@ const UserRoute = ({ ...rest }: any) => {
     authApi.refreshToken({ refreshToken: refreshToken }).then(tokens => {
       if (tokens) {
         dispatchLogin(new Login(tokens));
-        history.push('/user-settings');
+        history.push('/settings');
       }
     });
   }

@@ -13,7 +13,7 @@ const NotFound = () => {
           <div className="container">
             <h1 className="title">Page not found</h1>
             <h2 className="subtitile">
-              <Link to="/user-settings" className="button ">
+              <Link to="/settings" className="button ">
                 Back to User Settings
               </Link>
             </h2>
