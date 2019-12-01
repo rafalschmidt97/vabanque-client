@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import Helmet from 'react-helmet';
 import FooterMenu from '../common/component/footer-menu';
 import styles from './styles.module.scss';
+import { useDispatch } from 'react-redux';
+import { Logout } from '../core/auth/state/actions';
 
 const UserSettings = () => {
+  const dispatchLogout = useDispatch<Dispatch<Logout>>();
+
   return (
     <>
       <Helmet>
@@ -20,6 +24,7 @@ const UserSettings = () => {
             <div className="container has-margin-top-75">
               <button
                 className={`${styles.big} button is-large is-danger  is-fullwidth is-rounded`}
+                onClick={() => dispatchLogout(new Logout())}
               >
                 Logout
               </button>

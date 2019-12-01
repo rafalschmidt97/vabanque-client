@@ -1,4 +1,4 @@
-import { RefreshRequest } from '../../home/login/external-auth/types';
+import { RefreshRequest, LogoutRequest } from '../../home/login/external-auth/types';
 import { Token } from './types';
 import { AuthRequest } from '../../home/login/external-auth/types';
 import httpClient from '../../common/http';
@@ -14,6 +14,10 @@ class AuthApi {
 
   refreshToken(refreshRequest: RefreshRequest): Promise<Token> {
     return httpClient.post<Token>(`/auth/refresh`, refreshRequest).then(res => res.data);
+  }
+
+  logout(logoutRequest: LogoutRequest) {
+    return httpClient.post(`/auth/logout`, logoutRequest);
   }
 }
 
