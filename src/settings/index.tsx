@@ -5,7 +5,7 @@ import styles from './styles.module.scss';
 import { useDispatch } from 'react-redux';
 import { Logout } from '../core/auth/state/actions';
 
-const UserSettings = () => {
+const Settings = () => {
   const dispatchLogout = useDispatch<Dispatch<Logout>>();
 
   return (
@@ -17,13 +17,13 @@ const UserSettings = () => {
         <div className="hero-body">
           <div className="container">
             <div className="container has-padding-bottom-75">
-              <button className={`${styles.big} button is-large is-info  is-fullwidth is-rounded`}>
+              <button className={`${styles.big} button is-large is-info is-fullwidth is-rounded`}>
                 Update Profile
               </button>
             </div>
             <div className="container has-margin-top-75">
               <button
-                className={`${styles.big} button is-large is-danger  is-fullwidth is-rounded`}
+                className={`${styles.big} button is-large is-danger is-fullwidth is-rounded`}
                 onClick={() => dispatchLogout(new Logout())}
               >
                 Logout
@@ -37,4 +37,4 @@ const UserSettings = () => {
   );
 };
 
-export default UserSettings;
+export default Settings;

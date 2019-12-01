@@ -7,8 +7,8 @@ import Overview from './panel/overview';
 import ProtectedRoute from './common/component/protected-route';
 import NotFound from './common/component/not-found';
 import UserRoute from './common/component/user-route';
-import UserSettings from './user-settings';
-import UpdateProfileForm from './user-settings/update-profile-form';
+import Settings from './settings';
+import UpdateProfileForm from './settings/update-profile-form';
 
 export const store = createStoreWithMiddleware();
 
@@ -18,7 +18,7 @@ const App = () => {
       <Router>
         <Switch>
           <UserRoute path="/login" component={LoginComponent} />
-          <ProtectedRoute path="/user-settings" component={UserSettings} />
+          <ProtectedRoute path="/settings" component={Settings} />
           <ProtectedRoute path="/update-profile" component={UpdateProfileForm} />
           <ProtectedRoute path="/overview" component={Overview} />
           <Redirect exact from="/" to="login" />
