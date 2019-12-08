@@ -1,4 +1,3 @@
-import { GameJoin } from './../../core/game/state/actions';
 import {
   SocketDisconnected,
   SocketActionTypes,
@@ -8,8 +7,8 @@ import { Middleware, Store } from 'redux';
 import SockJS from 'sockjs-client';
 import { store } from '../../app';
 import { AuthActionTypes } from '../../core/auth/state/actions';
-import { GameCreate, GameFailedJoin } from '../../core/game/state/actions';
 import { RootState } from '../../core/state';
+import socketService from '../util/socket-service';
 
 let socket: WebSocket | null = null;
 const onOpen = (store: Store<RootState>) => () => {
@@ -19,21 +18,6 @@ const onOpen = (store: Store<RootState>) => () => {
 const onClose = (store: Store<RootState>) => (error: CloseEvent) => {
   console.log(error);
   store.dispatch(new SocketDisconnected());
-};
-
-const onMessage = (store: Store<RootState>) => (message: MessageEvent) => {
-  const decodedMessage = JSON.parse(message.data);
-  console.log(`message ${JSON.stringify(decodedMessage)}`);
-  switch (decodedMessage.type) {
-    case 'created_confirm':
-      store.dispatch(new GameCreate(decodedMessage.payload));
-      break;
-    case 'join_confirm':
-      store.dispatch(new GameJoin(decodedMessage.payload));
-      break;
-    case 'error':
-      store.dispatch(new GameFailedJoin());
-  }
 };
 
 function sendAction(type: string, payload: any) {
@@ -55,7 +39,7 @@ const webSocket: Middleware = () => next => action => {
 
       socket.onopen = onOpen(store);
       socket.onclose = onClose(store);
-      socket.onmessage = onMessage(store);
+      socket.onmessage = socketService.onMessage(store);
 
       break;
     case SocketActionTypes.Connected:
@@ -69,10 +53,12 @@ const webSocket: Middleware = () => next => action => {
           { small: 50, big: 100 },
         ],
       });
-
       break;
     case SocketActionTypes.Join:
       sendAction('join', { code: action.payload });
+      break;
+    case SocketActionTypes.Create:
+      sendAction('create', { code: action.payload });
       break;
     case SocketActionTypes.Disconnect:
       if (socket !== null) {

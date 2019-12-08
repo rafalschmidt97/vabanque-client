@@ -1,8 +1,10 @@
+import { Code, GameSettings } from './types';
 import { Action } from 'redux';
 
 export enum SocketActionTypes {
   Connect = '[Socket] Connect',
   Join = '[Socket] Join',
+  Create = '[Socket] Create',
   Connected = '[Socket] Connected',
   Disconnect = '[Socket] Disconnect',
   Disconnected = '[Socket] Disconnected',
@@ -20,10 +22,20 @@ export class SocketConnect implements Action {
 export class SocketJoin implements Action {
   readonly type = SocketActionTypes.Join;
 
-  payload: string;
+  payload: Code;
 
-  constructor(code: string) {
-    this.payload = code;
+  constructor(payload: Code) {
+    this.payload = payload;
+  }
+}
+
+export class Create implements Action {
+  readonly type = SocketActionTypes.Create;
+
+  payload: GameSettings;
+
+  constructor(payload: GameSettings) {
+    this.payload = payload;
   }
 }
 

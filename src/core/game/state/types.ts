@@ -12,7 +12,7 @@ export interface Game {
   players: Player[];
 }
 
-interface Progression {
+export interface Progression {
   small: number;
   big: number;
 }
