@@ -1,4 +1,4 @@
-import { LogoutRequest } from './../../home/login/external-auth/types';
+import { LogoutRequest } from '../../home/login/external-auth/types';
 import { Middleware } from 'redux';
 import { AuthActionTypes } from '../../core/auth/state/actions';
 import localStorageService from '../../core/auth/localStorageService';

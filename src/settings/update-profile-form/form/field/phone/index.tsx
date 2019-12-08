@@ -29,7 +29,7 @@ const Phone = (props: Props) => {
               'is-danger': props.hasErrors,
             })}
           />
-          <Error fieldName="phoneNumber" isVisible={props.hasErrors} />
+          <Error fieldName="phoneNumber" isVisible={props.hasErrors} color="has-text-danger" />
         </div>
       </div>
     </>

@@ -1,4 +1,4 @@
-import { ProfileActionTypes } from './../../core/profile/state/actions';
+import { ProfileActionTypes } from '../../core/profile/state/actions';
 import { ProfileState } from '../../core/profile/state/types';
 import { SetProfile } from '../../core/profile/state/actions';
 import { store } from '../../app';

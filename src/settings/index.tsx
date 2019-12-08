@@ -3,9 +3,11 @@ import Helmet from 'react-helmet';
 import FooterMenu from '../common/component/footer-menu';
 import { useDispatch } from 'react-redux';
 import { Logout } from '../core/auth/state/actions';
+import { useHistory } from 'react-router';
 
 const Settings = () => {
   const dispatchLogout = useDispatch<Dispatch<Logout>>();
+  const history = useHistory();
 
   return (
     <>
@@ -16,7 +18,12 @@ const Settings = () => {
         <div className="hero-body">
           <div className="container">
             <div className="container has-padding-bottom-75">
-              <button className={`is-size-2 button is-large is-info is-fullwidth is-rounded`}>
+              <button
+                className={`is-size-2 button is-large is-info is-fullwidth is-rounded`}
+                onClick={() => {
+                  history.push('update-profile');
+                }}
+              >
                 Update Profile
               </button>
             </div>
