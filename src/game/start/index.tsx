@@ -1,8 +1,10 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import FooterMenu from '../../common/component/footer-menu';
+import { useHistory } from 'react-router';
 
 const Start = () => {
+  const history = useHistory();
   return (
     <>
       <Helmet>
@@ -17,7 +19,12 @@ const Start = () => {
               </button>
             </div>
             <div className="container has-margin-top-50">
-              <button className="is-size-2 button is-large is-info is-fullwidth is-rounded">
+              <button
+                className="is-size-2 button is-large is-info is-fullwidth is-rounded"
+                onClick={() => {
+                  history.push('/game/find-lobby');
+                }}
+              >
                 Find
               </button>
             </div>
