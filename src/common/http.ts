@@ -7,6 +7,8 @@ import localStorageService from '../core/auth/localStorageService';
 import authApi from '../core/auth/api';
 
 const refreshTokenEndpoint = '/auth/refresh';
+const loginEndpoint = '/auth/login';
+const logoutEndpoint = '/auth/logout';
 const unauthorized = 401;
 const forbidden = 403;
 
@@ -72,7 +74,12 @@ httpClient.interceptors.response.use(
 httpClient.interceptors.request.use(config => {
   const accessToken = localStorageService.getAccessToken();
 
-  if (accessToken && config.url !== refreshTokenEndpoint) {
+  if (
+    accessToken &&
+    config.url !== refreshTokenEndpoint &&
+    config.url !== loginEndpoint &&
+    config.url !== logoutEndpoint
+  ) {
     setAuthorizationHeader(config, accessToken);
   }
   return config;
