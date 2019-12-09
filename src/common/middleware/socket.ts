@@ -9,6 +9,7 @@ import { store } from '../../app';
 import { AuthActionTypes } from '../../core/auth/state/actions';
 import { RootState } from '../../core/state';
 import socketService from '../util/socket-service';
+import AppConstants from '../constants';
 
 let socket: WebSocket | null = null;
 const onOpen = (store: Store<RootState>) => () => {
@@ -35,7 +36,7 @@ const webSocket: Middleware = () => next => action => {
         socket.close();
       }
 
-      socket = new SockJS(`http://localhost:8080/game?access_token=${action.payload.accessToken}`);
+      socket = new SockJS(`${AppConstants.appUrl}/game?access_token=${action.payload.accessToken}`);
 
       socket.onopen = onOpen(store);
       socket.onclose = onClose(store);
@@ -59,6 +60,9 @@ const webSocket: Middleware = () => next => action => {
       break;
     case SocketActionTypes.Create:
       sendAction('create', { code: action.payload });
+      break;
+    case SocketActionTypes.Start:
+      sendAction('start', { code: action.payload });
       break;
     case SocketActionTypes.Disconnect:
       if (socket !== null) {
