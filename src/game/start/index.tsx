@@ -22,7 +22,7 @@ const Start = () => {
               <button
                 className="is-size-2 button is-large is-info is-fullwidth is-rounded"
                 onClick={() => {
-                  history.push('/game/find-lobby');
+                  history.push('find-lobby');
                 }}
               >
                 Find

@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { Game } from './types';
+import { Game, startedAt } from './types';
 
 export enum GameActionTypes {
   Create = '[Game] Create',
@@ -19,11 +19,8 @@ export enum GameActionTypes {
 
 export class GameCreate implements Action {
   readonly type = GameActionTypes.Create;
-  payload: Game;
 
-  constructor(game: Game) {
-    this.payload = game;
-  }
+  constructor(public payload: Game) {}
 }
 
 export class GameFinish implements Action {
@@ -32,11 +29,8 @@ export class GameFinish implements Action {
 
 export class GameJoin implements Action {
   readonly type = GameActionTypes.Join;
-  payload: Game;
 
-  constructor(game: Game) {
-    this.payload = game;
-  }
+  constructor(public payload: Game) {}
 }
 
 export class GameFailedJoin implements Action {
@@ -73,6 +67,8 @@ export class GameResume implements Action {
 
 export class GameStart implements Action {
   readonly type = GameActionTypes.Start;
+
+  constructor(public payload: startedAt) {}
 }
 
 export class GameSync implements Action {
