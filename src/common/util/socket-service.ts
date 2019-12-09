@@ -1,3 +1,4 @@
+import { GameStart } from './../../core/game/state/actions';
 import { Store } from 'redux';
 import { RootState } from '../../core/state';
 import { GameCreate, GameJoin, GameFailedJoin } from '../../core/game/state/actions';
@@ -12,6 +13,9 @@ class SocketService {
         break;
       case 'join_confirm':
         store.dispatch(new GameJoin(decodedMessage.payload));
+        break;
+      case 'started':
+        store.dispatch(new GameStart(decodedMessage.payload.startedAt));
         break;
       case 'error':
         switch (decodedMessage.payload.type) {

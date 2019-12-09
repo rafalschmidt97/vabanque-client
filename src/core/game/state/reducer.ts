@@ -3,7 +3,15 @@ import { GameState } from './types';
 import { GameActions, GameActionTypes } from './actions';
 
 const initialState: GameState = {
-  game: { gameId: '', code: '', duration: new Date(0), entry: '', progression: [], players: [] },
+  game: {
+    gameId: '',
+    code: '',
+    duration: new Date(0),
+    entry: '',
+    progression: [],
+    players: [],
+    startedAt: new Date(0),
+  },
   failedRequests: { join: false },
 };
 
@@ -22,10 +30,22 @@ export const GameReducer: Reducer<GameState, GameActions> = (state = initialStat
         failedRequests: { join: false },
       };
     }
+    case GameActionTypes.Start: {
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          startedAt: action.payload,
+        },
+      };
+    }
     case GameActionTypes.FailedJoin: {
       return {
         ...state,
-        failedRequests: { join: true },
+        failedRequests: {
+          ...state.failedRequests,
+          join: true,
+        },
       };
     }
   }

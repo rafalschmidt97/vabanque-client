@@ -10,6 +10,7 @@ export interface Game {
   entry: string;
   progression: Progression[];
   players: Player[];
+  startedAt: Date;
 }
 
 export interface Progression {
@@ -26,3 +27,5 @@ interface Player {
 interface FailedRequests {
   join: boolean;
 }
+
+export type startedAt = Date;
