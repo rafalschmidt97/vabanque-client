@@ -1,6 +1,14 @@
 export interface GameState {
+  status: GameStatus;
   game: Game;
   failedRequests: FailedRequests;
+}
+
+export enum GameStatus {
+  Idle = 'idle',
+  InLobby = 'in_lobby',
+  Playing = 'playing',
+  Paused = 'paused',
 }
 
 export interface Game {

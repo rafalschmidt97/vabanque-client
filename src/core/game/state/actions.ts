@@ -1,91 +1,89 @@
 import { Action } from 'redux';
-import { Game, startedAt } from './types';
+import { Game, startedAt, Progression } from './types';
 
 export enum GameActionTypes {
   Create = '[Game] Create',
-  Finish = '[Game] Finish',
   Join = '[Game] Join',
-  FailedJoin = '[Game] Failed Join',
-  Leave = '[Game] Leave',
-  MarkInGameAsDisconnnected = '[Game] MarkInGameAsDisconnnected',
-  Pause = '[Game] Pause',
-  Raise = '[Game] Raise',
-  Rank = '[Game] Rank',
-  Remove = '[Game] Remove',
-  Resume = '[Game] Resume',
   Start = '[Game] Start',
+  Pause = '[Game] Pause',
+  Resume = '[Game] Resume',
+  Leave = '[Game] Leave',
   Sync = '[Game] Sync',
+  Raise = '[Game] Raise',
+  Finish = '[Game] Finish',
+  Disconnect = '[Game] Disconnect',
+  FailedJoin = '[Game] Failed Join',
+  MarkInGameAsDisconnnected = '[Game] MarkInGameAsDisconnnected',
 }
 
-export class GameCreate implements Action {
+export class Create implements Action {
   readonly type = GameActionTypes.Create;
 
   constructor(public payload: Game) {}
 }
 
-export class GameFinish implements Action {
-  readonly type = GameActionTypes.Finish;
-}
-
-export class GameJoin implements Action {
+export class Join implements Action {
   readonly type = GameActionTypes.Join;
 
   constructor(public payload: Game) {}
 }
 
-export class GameFailedJoin implements Action {
-  readonly type = GameActionTypes.FailedJoin;
-}
-
-export class GameLeave implements Action {
-  readonly type = GameActionTypes.Leave;
-}
-
-export class GameMarkInGameAsDisconnnected implements Action {
-  readonly type = GameActionTypes.MarkInGameAsDisconnnected;
-}
-
-export class GamePause implements Action {
-  readonly type = GameActionTypes.Pause;
-}
-
-export class GameRaise implements Action {
-  readonly type = GameActionTypes.Raise;
-}
-
-export class GameRank implements Action {
-  readonly type = GameActionTypes.Rank;
-}
-
-export class GameRemove implements Action {
-  readonly type = GameActionTypes.Remove;
-}
-
-export class GameResume implements Action {
-  readonly type = GameActionTypes.Resume;
-}
-
-export class GameStart implements Action {
+export class Start implements Action {
   readonly type = GameActionTypes.Start;
 
   constructor(public payload: startedAt) {}
 }
 
-export class GameSync implements Action {
+export class Pause implements Action {
+  readonly type = GameActionTypes.Pause;
+}
+
+export class Resume implements Action {
+  readonly type = GameActionTypes.Resume;
+}
+
+export class Leave implements Action {
+  readonly type = GameActionTypes.Leave;
+}
+
+export class Sync implements Action {
   readonly type = GameActionTypes.Sync;
+
+  constructor(public payload: Game) {}
+}
+
+export class Raise implements Action {
+  readonly type = GameActionTypes.Raise;
+
+  constructor(public payload: Progression[]) {}
+}
+
+export class Finish implements Action {
+  readonly type = GameActionTypes.Finish;
+}
+
+export class Disconnect implements Action {
+  readonly type = GameActionTypes.Disconnect;
+}
+
+export class FailedJoin implements Action {
+  readonly type = GameActionTypes.FailedJoin;
+}
+
+export class MarkInGameAsDisconnnected implements Action {
+  readonly type = GameActionTypes.MarkInGameAsDisconnnected;
 }
 
 export type GameActions =
-  | GameCreate
-  | GameFinish
-  | GameFailedJoin
-  | GameJoin
-  | GameLeave
-  | GameMarkInGameAsDisconnnected
-  | GamePause
-  | GameRaise
-  | GameRank
-  | GameRemove
-  | GameResume
-  | GameStart
-  | GameSync;
+  | Create
+  | Finish
+  | FailedJoin
+  | Join
+  | Leave
+  | MarkInGameAsDisconnnected
+  | Pause
+  | Raise
+  | Resume
+  | Start
+  | Sync
+  | Disconnect;
