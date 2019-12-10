@@ -9,7 +9,7 @@ import {
   Sync as GameSync,
   Raise,
 } from './../game/state/actions';
-import { SocketResponse } from './state/types';
+import { SocketResponse, SocketErrorResponse } from './state/types';
 import { Store } from 'redux';
 import { RootState } from '../state';
 import { Sync as SocketSync } from './state/actions';
@@ -19,13 +19,13 @@ class SocketService {
     const decodedMessage = JSON.parse(message.data);
     console.log(`message ${JSON.stringify(decodedMessage)}`);
     switch (decodedMessage.type) {
-      case SocketResponse.Created:
+      case SocketResponse.CreatedConfirm:
         store.dispatch(new Create(decodedMessage.payload));
         break;
       case SocketResponse.PlayerJoined || SocketResponse.PlayerLeft:
         store.dispatch(new SocketSync(decodedMessage.payload));
         break;
-      case SocketResponse.Joined:
+      case SocketResponse.JoinedConfirm:
         store.dispatch(new Join(decodedMessage.payload));
         break;
       case SocketResponse.Started:
@@ -37,7 +37,7 @@ class SocketService {
       case SocketResponse.Resumed:
         store.dispatch(new Resume());
         break;
-      case SocketResponse.Left || SocketResponse.PlayerRemoved || SocketResponse.Removed:
+      case SocketResponse.LeftConfirm || SocketResponse.Removed || SocketResponse.RemovedConfirm:
         store.dispatch(new Leave());
         break;
       case SocketResponse.Sync:
@@ -48,7 +48,7 @@ class SocketService {
         break;
       case SocketResponse.Error:
         switch (decodedMessage.payload.type) {
-          case SocketResponse.JoinFailed:
+          case SocketErrorResponse.JoinFailed:
             store.dispatch(new FailedJoin());
         }
     }

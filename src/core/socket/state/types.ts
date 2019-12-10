@@ -18,23 +18,26 @@ export interface Ranks {
 }
 
 export enum SocketResponse {
-  Created = 'created',
+  CreatedConfirm = 'created_confirm',
   PlayerJoined = 'player_joined',
-  Joined = 'joined',
+  JoinedConfirm = 'joined_confirm',
   Started = 'started',
   Paused = 'paused',
   Resumed = 'resumed',
   PlayerLeft = 'player_left',
-  Left = 'left',
+  LeftConfirm = 'left_confirm',
   Sync = 'sync',
   Raised = 'raised',
-  PlayerRemoved = 'player_removed',
   Removed = 'removed',
-  FinishedWait = 'finished_wait',
+  RemovedConfirm = 'removed_confirm',
+  RankedWait = 'ranked_wait',
+  RankedConfirm = 'ranked_confirm',
   Finished = 'finished',
-  Ranked = 'ranked',
   PlayerReconnected = 'player_reconnected',
   PlayerDisconnected = 'player_disconnected',
   Error = 'error',
+}
+
+export enum SocketErrorResponse {
   JoinFailed = 'GAME_JOIN_FAILED',
 }
