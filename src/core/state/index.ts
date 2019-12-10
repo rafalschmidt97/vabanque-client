@@ -14,7 +14,8 @@ import clearLocalStorageOnLogout from '../../common/middleware/clear-local-stora
 import setTokens from '../../common/middleware/set-tokens';
 import { AuthState } from '../auth/state/types';
 import updateProfile from '../../common/middleware/set-profile';
-import webSocket from '../../common/middleware/socket';
+import scoket from '../../common/middleware/socket';
+import socketRedirect from '../../common/middleware/socket-redirect';
 
 export interface RootState {
   auth: AuthState;
@@ -37,7 +38,8 @@ export function createStoreWithMiddleware(): Store {
     clearLocalStorageOnLogout,
     setTokens,
     updateProfile,
-    webSocket,
+    scoket,
+    socketRedirect,
   ];
   const middleware = applyMiddleware(...middlewares);
 
