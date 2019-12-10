@@ -1,8 +1,9 @@
 import { Reducer } from 'redux';
-import { GameState } from './types';
+import { GameState, GameStatus } from './types';
 import { GameActions, GameActionTypes } from './actions';
 
 const initialState: GameState = {
+  status: GameStatus.Idle,
   game: {
     gameId: '',
     code: '',
@@ -20,12 +21,14 @@ export const GameReducer: Reducer<GameState, GameActions> = (state = initialStat
     case GameActionTypes.Create: {
       return {
         ...state,
+        status: GameStatus.InLobby,
         game: action.payload,
       };
     }
     case GameActionTypes.Join: {
       return {
         ...state,
+        status: GameStatus.InLobby,
         game: action.payload,
         failedRequests: { join: false },
       };
@@ -35,7 +38,47 @@ export const GameReducer: Reducer<GameState, GameActions> = (state = initialStat
         ...state,
         game: {
           ...state.game,
+          status: GameStatus.Playing,
           startedAt: action.payload,
+        },
+      };
+    }
+    case GameActionTypes.Pause: {
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          status: GameStatus.Paused,
+        },
+      };
+    }
+    case GameActionTypes.Resume: {
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          status: GameStatus.Playing,
+        },
+      };
+    }
+    case GameActionTypes.Leave: {
+      return {
+        ...state,
+        state: initialState,
+      };
+    }
+    case GameActionTypes.Sync: {
+      return {
+        ...state,
+        game: action.payload,
+      };
+    }
+    case GameActionTypes.Raise: {
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          progression: action.payload,
         },
       };
     }

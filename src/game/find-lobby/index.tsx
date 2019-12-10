@@ -7,19 +7,19 @@ import { initialFormValues } from './types';
 import Code from './code';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import JoinButton from './join';
-import { SocketJoin } from '../../core/socket/state/actions';
+import { Join } from '../../core/socket/state/actions';
 import { RootState } from '../../core/state';
 import { store } from '../../app';
 
 const JoinGame = () => {
   let joinFailed = useSelector((state: RootState) => state.game.failedRequests.join, shallowEqual);
-  const dispatchJoin = useDispatch<Dispatch<SocketJoin>>();
+  const dispatchJoin = useDispatch<Dispatch<Join>>();
   const onSubmit = (
     form: FormValues,
     setFieldError: (field: string, message: string) => void,
     setSubmitting: (isSubmitting: boolean) => void,
   ) => {
-    dispatchJoin(new SocketJoin(form.code));
+    dispatchJoin(new Join(form.code));
     setTimeout(() => {
       joinFailed = store.getState().game.failedRequests.join;
       if (joinFailed) {
