@@ -10,6 +10,8 @@ $facebook: #4267b2;
 $facebook-invert: findColorInvert($facebook);
 $google: #4285f4;
 $google-invert: findColorInvert($google);
+$light-purple: #bd7bcd;
+$light-purple-invert: findColorInvert($google);
 
 @import '~bulma/sass/utilities/derived-variables';
 $addColors: (
@@ -24,6 +26,10 @@ $addColors: (
   'facebook': (
     $facebook,
     $facebook-invert,
+  ),
+  'light-purple': (
+    $light-purple,
+    $light-purple-invert,
   ),
 );
 $colors: map-merge($colors, $addColors);

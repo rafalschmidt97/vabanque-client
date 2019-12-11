@@ -6,7 +6,7 @@ const FooterMenu = () => {
   const history = useHistory();
   return (
     <>
-      <div className={`${styles.bottom} buttons has-addons is-fullwidth  is-centered`}>
+      <div className={`${styles.bottom} buttons has-addons is-fullwidth is-centered`}>
         <div
           className={`${styles.third} button is-large has-text-danger`}
           onClick={() => {
@@ -15,7 +15,7 @@ const FooterMenu = () => {
         >
           Game
         </div>
-        <div className={`${styles.thirdish} button is-large has-text-warning`}>Money</div>
+        <div className={`${styles.thirdish} button is-large has-text-success`}>Money</div>
         <div
           className={`${styles.third} button is-large has-text-info`}
           onClick={() => {

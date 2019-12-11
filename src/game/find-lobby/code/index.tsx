@@ -1,7 +1,7 @@
 import { Field } from 'formik';
 import React from 'react';
 import classNames from 'classnames';
-import Error from '../../../common/component/error';
+import ErrorMessage from '../../../common/component/error';
 
 type Props = {
   hasErrors: boolean;
@@ -18,7 +18,7 @@ const Code = (props: Props) => {
               'is-danger': props.hasErrors,
             })}
           />
-          <Error fieldName="code" isVisible={props.hasErrors} color="has-text-light" />
+          <ErrorMessage fieldName="code" isVisible={props.hasErrors} color="has-text-light" />
         </div>
       </div>
     </>

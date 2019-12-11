@@ -8,7 +8,7 @@ type Props = {
   color: string;
 };
 
-const Error = (props: Props) => {
+const ErrorLabel = (props: Props) => {
   return (
     <div
       className={classNames(props.color, {
@@ -23,4 +23,4 @@ const Error = (props: Props) => {
   );
 };
 
-export default Error;
+export default ErrorLabel;
