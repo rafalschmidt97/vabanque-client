@@ -16,6 +16,7 @@ import { SocketResponse, SocketErrorResponse } from './state/types';
 import { Store } from 'redux';
 import { RootState } from '../state';
 import { Sync as SocketSync } from './state/actions';
+import history from '../../common/history';
 
 class SocketService {
   onMessage = (store: Store<RootState>) => (message: MessageEvent) => {
@@ -60,6 +61,12 @@ class SocketService {
         break;
       case SocketResponse.Raised:
         store.dispatch(new Raise(decodedMessage.payload.progression));
+        break;
+      case SocketResponse.RankedWait:
+        history.push('/game/rank/wait');
+        break;
+      case SocketResponse.RankedConfirm:
+        history.push('/game/rank/admin');
         break;
       case SocketResponse.Error:
         switch (decodedMessage.payload.type) {

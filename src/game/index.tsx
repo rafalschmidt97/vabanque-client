@@ -6,6 +6,8 @@ import FindLobby from './find-lobby';
 import CreateGame from './create';
 import Lobby from './lobby';
 import Play from './play';
+import RankAdmin from './rank';
+import RankWait from './rank/wait';
 
 const Game = (props: RouteComponentProps) => {
   const { path } = props.match;
@@ -19,6 +21,8 @@ const Game = (props: RouteComponentProps) => {
         <ProtectedRoute exact path={`${path}/create`} component={CreateGame} />
         <ProtectedRoute exact path={`${path}/lobby`} component={Lobby} />
         <ProtectedRoute exact path={`${path}/play`} component={Play} />
+        <ProtectedRoute exact path={`${path}/rank/wait`} component={RankWait} />
+        <ProtectedRoute exact path={`${path}/rank/admin`} component={RankAdmin} />
       </Switch>
     </>
   );

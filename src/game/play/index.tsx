@@ -7,8 +7,10 @@ import { RootState } from '../../core/state';
 import { Leave, Remove, Pause, Resume, Rank } from '../../core/socket/state/actions';
 import { GameStatus } from '../../core/game/state/types';
 import { failedRequests } from '../../app';
+import isPlayerAdmin from '../../core/game/player-service';
 
 const Play = () => {
+  const isAdmin: boolean = isPlayerAdmin();
   const [isPaused, setIsPaused] = useState(false);
   let status = useSelector((state: RootState) => state.game.status);
   useEffect(() => {
@@ -91,7 +93,7 @@ const Play = () => {
           <div className={`${styles.wide}`}>
             <button
               className="is-size-2 button is-large is-success is-fullwidth is-rounded"
-              disabled={isPaused}
+              disabled={isPaused || !isAdmin}
               onClick={() => rank()}
             >
               Rank

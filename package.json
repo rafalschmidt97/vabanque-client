@@ -21,6 +21,7 @@
     "@types/sockjs-client": "^1.1.1",
     "axios": "^0.19.0",
     "bulma-helpers": "^0.3.8",
+    "bulma-pageloader": "^0.3.0",
     "classnames": "^2.2.6",
     "formik": "^1.5.8",
     "lodash": "^4.17.15",

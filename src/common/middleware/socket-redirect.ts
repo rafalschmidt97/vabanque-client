@@ -1,3 +1,4 @@
+import { SocketResponse } from './../../core/socket/state/types';
 import { GameActionTypes } from './../../core/game/state/actions';
 import { Middleware } from 'redux';
 import history from '../history';
@@ -22,6 +23,14 @@ const socketRedirect: Middleware = () => next => action => {
       break;
     case GameActionTypes.Disconnect:
       history.push('/settings');
+      break;
+    case SocketResponse.RankedWait:
+      console.log('rank wait');
+      history.push('/game/rank/wait');
+      break;
+    case SocketResponse.RankedConfirm:
+      console.log('rank confirm');
+      history.push('/game/rank/admin');
       break;
     default:
       break;

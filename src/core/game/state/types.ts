@@ -30,6 +30,7 @@ export interface Player {
   accountId: number;
   isAdmin: boolean;
   isConnected: boolean;
+  name: string;
 }
 
 interface FailedRequests {

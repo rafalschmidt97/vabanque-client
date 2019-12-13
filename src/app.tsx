@@ -11,6 +11,7 @@ import UpdateProfileForm from './settings/update-profile-form';
 import Game from './game';
 import history from './common/history';
 import Play from './game/play';
+import RankWait from './game/rank/wait';
 
 export const store = createStoreWithMiddleware();
 export const failedRequests = () => {
