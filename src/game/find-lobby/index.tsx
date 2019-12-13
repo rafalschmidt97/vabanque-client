@@ -5,14 +5,14 @@ import { Form, Formik, FormikProps } from 'formik';
 import { FormSchema, FormValues } from './types';
 import { initialFormValues } from './types';
 import Code from './code';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import JoinButton from './join';
 import { Join } from '../../core/socket/state/actions';
 import { RootState } from '../../core/state';
-import { store } from '../../app';
+import { failedRequests } from '../../app';
 
-const JoinGame = () => {
-  let joinFailed = useSelector((state: RootState) => state.game.failedRequests.join, shallowEqual);
+const FindLobby = () => {
+  let joinFailed = useSelector((state: RootState) => state.game.failedRequests.join);
   const dispatchJoin = useDispatch<Dispatch<Join>>();
   const onSubmit = (
     form: FormValues,
@@ -21,19 +21,18 @@ const JoinGame = () => {
   ) => {
     dispatchJoin(new Join(form.code));
     setTimeout(() => {
-      joinFailed = store.getState().game.failedRequests.join;
+      joinFailed = failedRequests().join;
       if (joinFailed) {
         setFieldError('code', "Game with such code doesn't exist");
         setSubmitting(false);
-      } else {
-        console.log('successful join');
       }
     }, 100);
   };
+
   return (
     <>
       <Helmet>
-        <title>Join Game</title>
+        <title>Find Lobby</title>
       </Helmet>
       <section className="hero is-primary is-fullheight">
         <div className="hero-body">
@@ -57,4 +56,4 @@ const JoinGame = () => {
     </>
   );
 };
-export default JoinGame;
+export default FindLobby;

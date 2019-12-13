@@ -14,3 +14,66 @@
 .center {
   align-items: center;
 }
+
+// .times.has-addons .time:not(:last-child) {
+//   border-bottom-right-radius: 0;
+//   border-top-right-radius: 0;
+// }
+
+// .times.is-centered .times {
+//   margin-right: 0.25rem;
+//   margin-left: 0.25rem;
+// }
+
+// .times.has-addons .time {
+//   margin-right: 0;
+// }
+
+// .time {
+//   align-items: center;
+//   background-color: whitesmoke;
+//   border-radius: 4px;
+//   color: #4a4a4a;
+//   display: inline-flex;
+//   font-size: 2rem;
+//   height: 64px;
+//   justify-content: center;
+//   line-height: 1.5;
+//   padding-left: 24px;
+//   padding-right: 24px;
+//   white-space: nowrap;
+//   width: 17.250px;
+//   font-style: inherit;
+//   font-weight: inherit;
+// }
+
+// <div className={`times has-addons ${styles.top} is-centered `}>
+// <Field
+// name="firstMinutes"
+// type="text"
+// className={classNames(`input has-text-centered ${styles.time}  is-warning`, {
+//   'is-danger': !!(touched.entry && errors.entry),
+// })}
+// />
+// <Field
+// name="secondMinutes"
+// type="text"
+// className={classNames(`input has-text-centered ${styles.time}  is-warning`, {
+//   'is-danger': !!(touched.entry && errors.entry),
+// })}
+// />
+// <Field
+// name="firstSeconds"
+// type="text"
+// className={classNames(`input has-text-centered ${styles.time}  is-warning`, {
+//   'is-danger': !!(touched.entry && errors.entry),
+// })}
+// />
+// <Field
+// name="secondSeconds"
+// type="text"
+// className={classNames(`input has-text-centered ${styles.time}  is-warning`, {
+//   'is-danger': !!(touched.entry && errors.entry),
+// })}
+// />
+// </div>

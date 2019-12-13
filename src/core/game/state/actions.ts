@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { Game, startedAt, Progression } from './types';
+import { GameData, startedAt, Progression } from './types';
 
 export enum GameActionTypes {
   Create = '[Game] Create',
@@ -13,19 +13,21 @@ export enum GameActionTypes {
   Finish = '[Game] Finish',
   Disconnect = '[Game] Disconnect',
   FailedJoin = '[Game] Failed Join',
+  FailedCreate = '[Game] Failed Create',
+  FailedStart = '[Game] Failed Start',
   MarkInGameAsDisconnnected = '[Game] MarkInGameAsDisconnnected',
 }
 
 export class Create implements Action {
   readonly type = GameActionTypes.Create;
 
-  constructor(public payload: Game) {}
+  constructor(public payload: GameData) {}
 }
 
 export class Join implements Action {
   readonly type = GameActionTypes.Join;
 
-  constructor(public payload: Game) {}
+  constructor(public payload: GameData) {}
 }
 
 export class Start implements Action {
@@ -49,7 +51,7 @@ export class Leave implements Action {
 export class Sync implements Action {
   readonly type = GameActionTypes.Sync;
 
-  constructor(public payload: Game) {}
+  constructor(public payload: GameData) {}
 }
 
 export class Raise implements Action {
@@ -70,20 +72,30 @@ export class FailedJoin implements Action {
   readonly type = GameActionTypes.FailedJoin;
 }
 
+export class FailedCreate implements Action {
+  readonly type = GameActionTypes.FailedCreate;
+}
+
+export class FailedStart implements Action {
+  readonly type = GameActionTypes.FailedStart;
+}
+
 export class MarkInGameAsDisconnnected implements Action {
   readonly type = GameActionTypes.MarkInGameAsDisconnnected;
 }
 
 export type GameActions =
   | Create
-  | Finish
-  | FailedJoin
   | Join
-  | Leave
-  | MarkInGameAsDisconnnected
-  | Pause
-  | Raise
-  | Resume
   | Start
+  | Pause
+  | Resume
+  | Leave
   | Sync
-  | Disconnect;
+  | Raise
+  | Finish
+  | Disconnect
+  | FailedJoin
+  | FailedCreate
+  | FailedStart
+  | MarkInGameAsDisconnnected;

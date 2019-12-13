@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import FooterMenu from '../../common/component/footer-menu';
 import { useHistory } from 'react-router';
 
-const Start = () => {
+const StartGame = () => {
   const history = useHistory();
   return (
     <>
@@ -14,7 +14,12 @@ const Start = () => {
         <div className="hero-body">
           <div className="container">
             <div className="container has-padding-bottom-75">
-              <button className="button is-large is-success  is-fullwidth is-rounded  is-size-2">
+              <button
+                className="button is-large is-success  is-fullwidth is-rounded  is-size-2"
+                onClick={() => {
+                  history.push('create');
+                }}
+              >
                 Create
               </button>
             </div>
@@ -35,4 +40,4 @@ const Start = () => {
     </>
   );
 };
-export default Start;
+export default StartGame;

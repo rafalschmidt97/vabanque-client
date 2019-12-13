@@ -5,10 +5,10 @@ import history from '../history';
 const socketRedirect: Middleware = () => next => action => {
   switch (action.type) {
     case GameActionTypes.Create:
-      console.log('redirecting to start game screen');
+      history.push('/game/lobby');
       break;
     case GameActionTypes.Join:
-      console.log('redirecting to start game screen');
+      history.push('/game/lobby');
       break;
     case GameActionTypes.Start:
       console.log('redirecting to game screen');

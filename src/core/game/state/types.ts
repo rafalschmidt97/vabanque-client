@@ -1,6 +1,6 @@
 export interface GameState {
   status: GameStatus;
-  game: Game;
+  data: GameData;
   failedRequests: FailedRequests;
 }
 
@@ -11,7 +11,7 @@ export enum GameStatus {
   Paused = 'paused',
 }
 
-export interface Game {
+export interface GameData {
   gameId: string;
   code: string;
   duration: Date;
@@ -26,7 +26,7 @@ export interface Progression {
   big: number;
 }
 
-interface Player {
+export interface Player {
   accountId: number;
   isAdmin: boolean;
   isConnected: boolean;
@@ -34,6 +34,8 @@ interface Player {
 
 interface FailedRequests {
   join: boolean;
+  create: boolean;
+  start: boolean;
 }
 
 export type startedAt = Date;

@@ -41,20 +41,16 @@ const webSocket: Middleware = () => next => action => {
 
       break;
     case SocketActionTypes.Connected:
-      sendAction('create', {
-        duration: '00:05:00',
-        entry: '1€',
-        progression: [
-          { small: 5, big: 10 },
-          { small: 10, big: 25 },
-          { small: 25, big: 50 },
-          { small: 50, big: 100 },
-        ],
-      });
+      console.log('socket connected');
       break;
     case SocketActionTypes.Create:
+      const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
+      const fullDuration = action.payload.duration.toLocaleString('en-US', options);
+      const durationTime = fullDuration.slice(1, -3);
+      const duration = '00' + durationTime;
+
       sendAction('create', {
-        duration: action.payload.duration,
+        duration: duration,
         entry: action.payload.entry,
         progression: action.payload.progression,
       });

@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import FooterMenu from '../../common/component/footer-menu';
 import Helmet from 'react-helmet';
 import { Form, Formik, FormikProps, Field } from 'formik';
-import { FormSchema, FormValues } from './types';
+import { FormSchema, FormValues, initialProgression } from './types';
 import { initialFormValues } from './types';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
 import ErrorLabel from '../../common/component/error';
+import { useDispatch, useSelector } from 'react-redux';
+import { Create } from '../../core/socket/state/actions';
+import { RootState } from '../../core/state';
+import { failedRequests } from '../../app';
 
 const CreateGame = () => {
-  const onSubmit = () => {};
+  let createFailed = useSelector((state: RootState) => state.game.failedRequests.create);
+  const dispatchCreate = useDispatch<Dispatch<Create>>();
+
+  const onSubmit = (form: FormValues, setSubmitting: (isSubmitting: boolean) => void) => {
+    dispatchCreate(
+      new Create({
+        duration: new Date(300000),
+        entry: form.entry,
+        progression: initialProgression,
+      }),
+    );
+    setTimeout(() => {
+      createFailed = failedRequests().create;
+      if (createFailed) {
+        window.alert('Create game failed');
+        setSubmitting(false);
+      }
+    }, 100);
+  };
   return (
     <>
       <Helmet>
@@ -21,8 +43,8 @@ const CreateGame = () => {
             validationSchema={FormSchema}
             initialValues={initialFormValues}
             enableReinitialize={true}
-            onSubmit={() => {
-              onSubmit();
+            onSubmit={(values, { setSubmitting }) => {
+              onSubmit(values, setSubmitting);
             }}
             render={({ errors, touched, isSubmitting }: FormikProps<FormValues>) => (
               <Form className="container">

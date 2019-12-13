@@ -8,6 +8,8 @@ import {
   FailedJoin,
   Sync as GameSync,
   Raise,
+  FailedCreate,
+  FailedStart,
 } from './../game/state/actions';
 import { SocketResponse, SocketErrorResponse } from './state/types';
 import { Store } from 'redux';
@@ -22,8 +24,11 @@ class SocketService {
       case SocketResponse.CreatedConfirm:
         store.dispatch(new Create(decodedMessage.payload));
         break;
-      case SocketResponse.PlayerJoined || SocketResponse.PlayerLeft:
-        store.dispatch(new SocketSync(decodedMessage.payload));
+      case SocketResponse.PlayerJoined:
+        store.dispatch(new SocketSync(decodedMessage.payload.gameId));
+        break;
+      case SocketResponse.PlayerLeft:
+        store.dispatch(new SocketSync(decodedMessage.payload.gameId));
         break;
       case SocketResponse.JoinedConfirm:
         store.dispatch(new Join(decodedMessage.payload));
@@ -50,6 +55,12 @@ class SocketService {
         switch (decodedMessage.payload.type) {
           case SocketErrorResponse.JoinFailed:
             store.dispatch(new FailedJoin());
+            break;
+          case SocketErrorResponse.CreateFailed:
+            store.dispatch(new FailedCreate());
+            break;
+          case SocketErrorResponse.StartFailed:
+            store.dispatch(new FailedStart());
         }
     }
   };

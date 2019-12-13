@@ -11,7 +11,7 @@ const LoginGoogle = () => {
   const history = useHistory();
 
   const login = () => {
-    authApi.signIn().then(token => {
+    authApi.signInGoogle().then(token => {
       dispatchLogin(new Login(token));
       history.push('game');
     });

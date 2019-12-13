@@ -10,7 +10,7 @@ const LoginFacebook = () => {
   const history = useHistory();
 
   const login = () => {
-    authApi.signIn().then(token => {
+    authApi.signInFacebook().then(token => {
       dispatchLogin(new Login(token));
       history.push('game');
     });

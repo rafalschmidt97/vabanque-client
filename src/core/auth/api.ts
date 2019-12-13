@@ -4,9 +4,17 @@ import { AuthRequest } from '../../home/login/external-auth/types';
 import httpClient from '../../common/http';
 
 class AuthApi {
-  signIn(): Promise<Token> {
+  signInGoogle(): Promise<Token> {
     const credentials: AuthRequest = {
       email: 'account1@example.com',
+      password: 'zaq1@WSX',
+    };
+    return httpClient.post<Token>(`/auth/sign-in`, credentials).then(res => res.data);
+  }
+
+  signInFacebook(): Promise<Token> {
+    const credentials: AuthRequest = {
+      email: 'account2@example.com',
       password: 'zaq1@WSX',
     };
     return httpClient.post<Token>(`/auth/sign-in`, credentials).then(res => res.data);

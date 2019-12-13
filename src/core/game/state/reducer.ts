@@ -4,7 +4,7 @@ import { GameActions, GameActionTypes } from './actions';
 
 const initialState: GameState = {
   status: GameStatus.Idle,
-  game: {
+  data: {
     gameId: '',
     code: '',
     duration: new Date(0),
@@ -13,7 +13,7 @@ const initialState: GameState = {
     players: [],
     startedAt: new Date(0),
   },
-  failedRequests: { join: false },
+  failedRequests: { join: false, create: false, start: false },
 };
 
 export const GameReducer: Reducer<GameState, GameActions> = (state = initialState, action) => {
@@ -22,22 +22,25 @@ export const GameReducer: Reducer<GameState, GameActions> = (state = initialStat
       return {
         ...state,
         status: GameStatus.InLobby,
-        game: action.payload,
+        data: action.payload,
       };
     }
     case GameActionTypes.Join: {
       return {
         ...state,
         status: GameStatus.InLobby,
-        game: action.payload,
-        failedRequests: { join: false },
+        data: action.payload,
+        failedRequests: {
+          ...state.failedRequests,
+          join: false,
+        },
       };
     }
     case GameActionTypes.Start: {
       return {
         ...state,
-        game: {
-          ...state.game,
+        data: {
+          ...state.data,
           status: GameStatus.Playing,
           startedAt: action.payload,
         },
@@ -46,8 +49,8 @@ export const GameReducer: Reducer<GameState, GameActions> = (state = initialStat
     case GameActionTypes.Pause: {
       return {
         ...state,
-        game: {
-          ...state.game,
+        data: {
+          ...state.data,
           status: GameStatus.Paused,
         },
       };
@@ -55,8 +58,8 @@ export const GameReducer: Reducer<GameState, GameActions> = (state = initialStat
     case GameActionTypes.Resume: {
       return {
         ...state,
-        game: {
-          ...state.game,
+        data: {
+          ...state.data,
           status: GameStatus.Playing,
         },
       };
@@ -70,14 +73,14 @@ export const GameReducer: Reducer<GameState, GameActions> = (state = initialStat
     case GameActionTypes.Sync: {
       return {
         ...state,
-        game: action.payload,
+        data: action.payload,
       };
     }
     case GameActionTypes.Raise: {
       return {
         ...state,
-        game: {
-          ...state.game,
+        data: {
+          ...state.data,
           progression: action.payload,
         },
       };
@@ -88,6 +91,24 @@ export const GameReducer: Reducer<GameState, GameActions> = (state = initialStat
         failedRequests: {
           ...state.failedRequests,
           join: true,
+        },
+      };
+    }
+    case GameActionTypes.FailedCreate: {
+      return {
+        ...state,
+        failedRequests: {
+          ...state.failedRequests,
+          create: true,
+        },
+      };
+    }
+    case GameActionTypes.FailedStart: {
+      return {
+        ...state,
+        failedRequests: {
+          ...state.failedRequests,
+          start: true,
         },
       };
     }
