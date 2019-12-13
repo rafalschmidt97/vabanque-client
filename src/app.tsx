@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStoreWithMiddleware } from './core/state';
 import LoginComponent from './home/login';
@@ -10,8 +10,6 @@ import Settings from './settings';
 import UpdateProfileForm from './settings/update-profile-form';
 import Game from './game';
 import history from './common/history';
-import Play from './game/play';
-import RankWait from './game/rank/wait';
 
 export const store = createStoreWithMiddleware();
 export const failedRequests = () => {

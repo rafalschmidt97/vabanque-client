@@ -11,7 +11,7 @@ const Email = (props: Props) => {
   return (
     <>
       <div className="control">
-        <span className="icon is-large fa-lg has-margin-left-50">
+        <span className="is-flex align-items-center">
           <i className="fas fa-user has-margin-right-10 has-text-white" />
           <label className="label is-large has-text-white">Email</label>
         </span>

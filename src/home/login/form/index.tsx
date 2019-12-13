@@ -51,7 +51,11 @@ const LoginForm = () => {
           <Password hasErrors={!!(touched.email && errors.email)} />
 
           <div className="control">
-            <button type="submit" disabled={isSubmitting} className="button is-black is-large is-full-width">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="button is-black is-large is-full-width"
+            >
               Login
             </button>
           </div>

@@ -21,8 +21,8 @@ const LoginComponent = () => {
           </figure>
         </div>
       </section>
-      <section className="hero has-margin-top-20">
-        <div className="hero-body">
+      <section className="hero">
+        <div className="has-padding-10 has-margin-5">
           <div className="columns">
             <div className="container has-text-centered column">
               <LoginForm />
