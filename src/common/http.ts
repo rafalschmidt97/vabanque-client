@@ -8,7 +8,7 @@ import authApi from '../core/auth/api';
 import AppConstants from './constants';
 
 const refreshTokenEndpoint = '/auth/refresh';
-const loginEndpoint = '/auth/login';
+const loginEndpoint = '/auth/sign-in';
 const logoutEndpoint = '/auth/logout';
 const unauthorized = 401;
 const forbidden = 403;

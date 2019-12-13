@@ -4,6 +4,10 @@ import { AuthRequest } from '../../home/login/external-auth/types';
 import httpClient from '../../common/http';
 
 class AuthApi {
+  signInWithEmail(request: AuthRequest): Promise<Token> {
+    return httpClient.post<Token>(`/auth/sign-in`, request).then(res => res.data);
+  }
+
   signInGoogle(): Promise<Token> {
     const credentials: AuthRequest = {
       email: 'account1@example.com',
