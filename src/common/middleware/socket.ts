@@ -50,7 +50,7 @@ const webSocket: Middleware = () => next => action => {
       const duration = '00' + durationTime;
 
       sendAction('create', {
-        duration: duration,
+        duration: '05:30',
         entry: action.payload.entry,
         progression: action.payload.progression,
       });
@@ -79,10 +79,10 @@ const webSocket: Middleware = () => next => action => {
     case SocketActionTypes.Remove:
       sendAction('remove', { gameId: action.payload });
       break;
-    case SocketActionTypes.Finish:
+    case SocketActionTypes.Rank:
       sendAction('finish', { gameId: action.payload });
       break;
-    case SocketActionTypes.Rank:
+    case SocketActionTypes.Finish:
       sendAction('rank', { gameId: action.payload });
       break;
     case SocketActionTypes.Disconnect:

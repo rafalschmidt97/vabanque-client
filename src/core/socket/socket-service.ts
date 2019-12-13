@@ -10,6 +10,7 @@ import {
   Raise,
   FailedCreate,
   FailedStart,
+  FailedResume,
 } from './../game/state/actions';
 import { SocketResponse, SocketErrorResponse } from './state/types';
 import { Store } from 'redux';
@@ -34,15 +35,24 @@ class SocketService {
         store.dispatch(new Join(decodedMessage.payload));
         break;
       case SocketResponse.Started:
+        console.log('game started');
         store.dispatch(new Start(decodedMessage.payload.startedAt));
         break;
       case SocketResponse.Paused:
+        console.log('game paused');
         store.dispatch(new Pause());
         break;
       case SocketResponse.Resumed:
+        console.log('game resumed');
         store.dispatch(new Resume());
         break;
-      case SocketResponse.LeftConfirm || SocketResponse.Removed || SocketResponse.RemovedConfirm:
+      case SocketResponse.LeftConfirm:
+        store.dispatch(new Leave());
+        break;
+      case SocketResponse.Removed:
+        store.dispatch(new Leave());
+        break;
+      case SocketResponse.RemovedConfirm:
         store.dispatch(new Leave());
         break;
       case SocketResponse.Sync:
@@ -61,6 +71,9 @@ class SocketService {
             break;
           case SocketErrorResponse.StartFailed:
             store.dispatch(new FailedStart());
+            break;
+          case SocketErrorResponse.ResumeFailed:
+            store.dispatch(new FailedResume());
         }
     }
   };

@@ -15,6 +15,7 @@ export enum GameActionTypes {
   FailedJoin = '[Game] Failed Join',
   FailedCreate = '[Game] Failed Create',
   FailedStart = '[Game] Failed Start',
+  FailedResume = '[Game] Failed Resume',
   MarkInGameAsDisconnnected = '[Game] MarkInGameAsDisconnnected',
 }
 
@@ -79,6 +80,9 @@ export class FailedCreate implements Action {
 export class FailedStart implements Action {
   readonly type = GameActionTypes.FailedStart;
 }
+export class FailedResume implements Action {
+  readonly type = GameActionTypes.FailedResume;
+}
 
 export class MarkInGameAsDisconnnected implements Action {
   readonly type = GameActionTypes.MarkInGameAsDisconnnected;
@@ -98,4 +102,5 @@ export type GameActions =
   | FailedJoin
   | FailedCreate
   | FailedStart
+  | FailedResume
   | MarkInGameAsDisconnnected;

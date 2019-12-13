@@ -11,7 +11,7 @@ const socketRedirect: Middleware = () => next => action => {
       history.push('/game/lobby');
       break;
     case GameActionTypes.Start:
-      console.log('redirecting to game screen');
+      history.push('/game/play');
       break;
     case GameActionTypes.Leave:
       history.push('/settings');

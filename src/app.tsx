@@ -10,6 +10,7 @@ import Settings from './settings';
 import UpdateProfileForm from './settings/update-profile-form';
 import Game from './game';
 import history from './common/history';
+import Play from './game/play';
 
 export const store = createStoreWithMiddleware();
 export const failedRequests = () => {

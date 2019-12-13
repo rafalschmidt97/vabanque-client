@@ -13,7 +13,7 @@ const initialState: GameState = {
     players: [],
     startedAt: new Date(0),
   },
-  failedRequests: { join: false, create: false, start: false },
+  failedRequests: { join: false, create: false, start: false, resume: false },
 };
 
 export const GameReducer: Reducer<GameState, GameActions> = (state = initialState, action) => {
@@ -23,6 +23,10 @@ export const GameReducer: Reducer<GameState, GameActions> = (state = initialStat
         ...state,
         status: GameStatus.InLobby,
         data: action.payload,
+        failedRequests: {
+          ...state.failedRequests,
+          create: false,
+        },
       };
     }
     case GameActionTypes.Join: {
@@ -39,28 +43,30 @@ export const GameReducer: Reducer<GameState, GameActions> = (state = initialStat
     case GameActionTypes.Start: {
       return {
         ...state,
+        status: GameStatus.Playing,
         data: {
           ...state.data,
-          status: GameStatus.Playing,
           startedAt: action.payload,
+        },
+        failedRequests: {
+          ...state.failedRequests,
+          start: false,
         },
       };
     }
     case GameActionTypes.Pause: {
       return {
         ...state,
-        data: {
-          ...state.data,
-          status: GameStatus.Paused,
-        },
+        status: GameStatus.Paused,
       };
     }
     case GameActionTypes.Resume: {
       return {
         ...state,
-        data: {
-          ...state.data,
-          status: GameStatus.Playing,
+        status: GameStatus.Playing,
+        failedRequests: {
+          ...state.failedRequests,
+          resume: false,
         },
       };
     }
@@ -109,6 +115,15 @@ export const GameReducer: Reducer<GameState, GameActions> = (state = initialStat
         failedRequests: {
           ...state.failedRequests,
           start: true,
+        },
+      };
+    }
+    case GameActionTypes.FailedResume: {
+      return {
+        ...state,
+        failedRequests: {
+          ...state.failedRequests,
+          resume: true,
         },
       };
     }

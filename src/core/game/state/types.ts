@@ -36,6 +36,7 @@ interface FailedRequests {
   join: boolean;
   create: boolean;
   start: boolean;
+  resume: boolean;
 }
 
 export type startedAt = Date;

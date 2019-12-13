@@ -13,8 +13,8 @@ export enum SocketActionTypes {
   Sync = '[Socket] Sync',
   Raise = '[Socket] Raise',
   Remove = '[Socket] Remove',
-  Finish = '[Socket] Finish',
   Rank = '[Socket] Rank',
+  Finish = '[Socket] Finish',
   Disconnect = '[Socket] Disconnect',
   Disconnected = '[Socket] Disconnected',
 }
@@ -73,13 +73,13 @@ export class Remove implements Action {
   constructor(public payload: GameId) {}
 }
 
-export class Finish implements Action {
-  readonly type = SocketActionTypes.Finish;
+export class Rank implements Action {
+  readonly type = SocketActionTypes.Rank;
   constructor(public payload: GameId) {}
 }
 
-export class Rank implements Action {
-  readonly type = SocketActionTypes.Rank;
+export class Finish implements Action {
+  readonly type = SocketActionTypes.Finish;
   constructor(public payload: Ranks) {}
 }
 
