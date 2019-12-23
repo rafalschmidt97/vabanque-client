@@ -73,7 +73,7 @@ export const GameReducer: Reducer<GameState, GameActions> = (state = initialStat
     case GameActionTypes.Leave: {
       return {
         ...state,
-        state: initialState,
+        data: initialState.data,
       };
     }
     case GameActionTypes.Sync: {

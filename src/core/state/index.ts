@@ -14,6 +14,7 @@ import updateProfile from '../../common/middleware/set-profile';
 import scoket from '../../common/middleware/socket';
 import socketRedirect from '../../common/middleware/socket-redirect';
 import { configureStore } from '@reduxjs/toolkit';
+import getPlayerNames from '../../common/middleware/get-player-name-on-sync';
 
 export interface RootState {
   auth: AuthState;
@@ -36,6 +37,7 @@ export function createStoreWithMiddleware(): Store {
     updateProfile,
     scoket,
     socketRedirect,
+    getPlayerNames,
   ];
 
   if (isProduction) {

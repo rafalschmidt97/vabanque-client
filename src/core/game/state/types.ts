@@ -31,6 +31,7 @@ export interface Player {
   isAdmin: boolean;
   isConnected: boolean;
   name: string;
+  nickname: string;
 }
 
 interface FailedRequests {
