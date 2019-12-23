@@ -25,7 +25,7 @@ const Password = (props: Props) => {
               'is-danger': props.hasErrors,
             })}
           />
-          <ErrorMessage fieldName="password" isVisible={props.hasErrors} color="has-text-danger" />
+          <ErrorMessage fieldName="password" isVisible={props.hasErrors} color="has-text-white" />
         </div>
       </div>
     </>

@@ -8,6 +8,8 @@ export const initialFormValues = {
 export type FormValues = typeof initialFormValues;
 
 export const FormSchema = Yup.object().shape<FormValues>({
-  email: Yup.string().required('Required'),
+  email: Yup.string()
+    .required('Required')
+    .email(),
   password: Yup.string().required('Required'),
 });

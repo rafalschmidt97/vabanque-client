@@ -25,7 +25,7 @@ const Email = (props: Props) => {
               'is-danger': props.hasErrors,
             })}
           />
-          <ErrorMessage fieldName="email" isVisible={props.hasErrors} color="has-text-danger" />
+          <ErrorMessage fieldName="email" isVisible={props.hasErrors} color="has-text-white" />
         </div>
       </div>
     </>

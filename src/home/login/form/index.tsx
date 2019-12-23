@@ -48,7 +48,7 @@ const LoginForm = () => {
       render={({ errors, touched, isSubmitting }: FormikProps<FormValues>) => (
         <Form className="container">
           <Email hasErrors={!!(touched.email && errors.email)} />
-          <Password hasErrors={!!(touched.email && errors.email)} />
+          <Password hasErrors={!!(touched.password && errors.password)} />
 
           <div className="control">
             <button
