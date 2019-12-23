@@ -47,7 +47,6 @@ const webSocket: Middleware = () => next => action => {
       const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
       const fullDuration = action.payload.duration.toLocaleString('en-US', options);
       const durationTime = fullDuration.slice(1, -3);
-      const duration = '00' + durationTime;
 
       sendAction('create', {
         duration: '05:30',

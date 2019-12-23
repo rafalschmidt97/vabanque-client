@@ -5,7 +5,7 @@ import { GameStatus } from '../../../core/game/state/types';
 
 const Timer = () => {
   const [isPaused, setIsPaused] = useState(false);
-  let status = useSelector((state: RootState) => state.game.status);
+  const status = useSelector((state: RootState) => state.game.status);
   const interval = useRef(setInterval(() => {}, 100));
   const [minutes, setMinutes] = useState(5);
   const [currentMinutes, setCurrentMinutes] = useState(5);

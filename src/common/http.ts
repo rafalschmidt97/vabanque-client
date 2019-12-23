@@ -8,8 +8,7 @@ import authApi from '../core/auth/api';
 import AppConstants from './constants';
 
 const refreshTokenEndpoint = '/auth/refresh';
-const loginEndpoint = '/auth/login';
-const logoutEndpoint = '/auth/logout';
+const loginEndpoint = '/auth/sign-in';
 const unauthorized = 401;
 const forbidden = 403;
 
@@ -78,8 +77,7 @@ httpClient.interceptors.request.use(config => {
   if (
     accessToken &&
     config.url !== refreshTokenEndpoint &&
-    config.url !== loginEndpoint &&
-    config.url !== logoutEndpoint
+    config.url !== loginEndpoint
   ) {
     setAuthorizationHeader(config, accessToken);
   }
