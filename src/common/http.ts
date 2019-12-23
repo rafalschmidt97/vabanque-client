@@ -74,11 +74,7 @@ httpClient.interceptors.response.use(
 httpClient.interceptors.request.use(config => {
   const accessToken = localStorageService.getAccessToken();
 
-  if (
-    accessToken &&
-    config.url !== refreshTokenEndpoint &&
-    config.url !== loginEndpoint
-  ) {
+  if (config.url !== refreshTokenEndpoint && config.url !== loginEndpoint) {
     setAuthorizationHeader(config, accessToken);
   }
   return config;

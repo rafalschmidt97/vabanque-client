@@ -44,10 +44,6 @@ const webSocket: Middleware = () => next => action => {
       console.log('socket connected');
       break;
     case SocketActionTypes.Create:
-      const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
-      const fullDuration = action.payload.duration.toLocaleString('en-US', options);
-      const durationTime = fullDuration.slice(1, -3);
-
       sendAction('create', {
         duration: '05:30',
         entry: action.payload.entry,
@@ -79,10 +75,10 @@ const webSocket: Middleware = () => next => action => {
       sendAction('remove', { gameId: action.payload });
       break;
     case SocketActionTypes.Rank:
-      sendAction('finish', { gameId: action.payload });
+      sendAction('rank', { gameId: action.payload });
       break;
     case SocketActionTypes.Finish:
-      sendAction('rank', { gameId: action.payload });
+      sendAction('finish', { gameId: action.payload });
       break;
     case SocketActionTypes.Disconnect:
       if (socket !== null) {

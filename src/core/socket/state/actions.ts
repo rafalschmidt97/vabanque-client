@@ -1,4 +1,4 @@
-import { GameSettings, code as Code, gameId as GameId, accessToken, Ranks } from './types';
+import { GameSettings, Code, GameId, AccessToken, Ranks } from './types';
 import { Action } from 'redux';
 
 export enum SocketActionTypes {
@@ -21,7 +21,7 @@ export enum SocketActionTypes {
 
 export class Connect implements Action {
   readonly type = SocketActionTypes.Connect;
-  constructor(public payload: accessToken) {}
+  constructor(public payload: AccessToken) {}
 }
 
 export class Connected implements Action {

@@ -36,15 +36,12 @@ class SocketService {
         store.dispatch(new Join(decodedMessage.payload));
         break;
       case SocketResponse.Started:
-        console.log('game started');
         store.dispatch(new Start(decodedMessage.payload.startedAt));
         break;
       case SocketResponse.Paused:
-        console.log('game paused');
         store.dispatch(new Pause());
         break;
       case SocketResponse.Resumed:
-        console.log('game resumed');
         store.dispatch(new Resume());
         break;
       case SocketResponse.LeftConfirm:

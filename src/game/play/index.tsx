@@ -12,7 +12,8 @@ import isPlayerAdmin from '../../core/game/player-service';
 const Play = () => {
   const isAdmin: boolean = isPlayerAdmin();
   const [isPaused, setIsPaused] = useState(false);
-  let status = useSelector((state: RootState) => state.game.status);
+  const [pauseOrResume, setPauseOrResume] = useState('Pause');
+  const status = useSelector((state: RootState) => state.game.status);
   useEffect(() => {
     if (status === GameStatus.Paused) {
       setIsPaused(true);
@@ -22,7 +23,6 @@ const Play = () => {
       setPauseOrResume('Pause');
     }
   }, [status]);
-  const [pauseOrResume, setPauseOrResume] = useState('Pause');
   const gameId = useSelector((state: RootState) => state.game.data.gameId);
   const dispatchLeave = useDispatch<Dispatch<Leave>>();
   const dispatchRemove = useDispatch<Dispatch<Remove>>();
@@ -70,8 +70,8 @@ const Play = () => {
               {pauseOrResume}
             </button>
           </div>
-          <section className="section flex-row">
-            <div>
+          <div className="columns is-mobile has-margin-top-25">
+            <div className="column">
               <button
                 className="is-size-3 button is-large is-dark-primary is-fullwidth is-rounded"
                 onClick={() => remove()}
@@ -80,7 +80,7 @@ const Play = () => {
                 Remove
               </button>
             </div>
-            <div>
+            <div className="column">
               <button
                 className="is-size-3 button is-large is-danger is-fullwidth is-rounded"
                 onClick={() => leave()}
@@ -89,7 +89,8 @@ const Play = () => {
                 Leave
               </button>
             </div>
-          </section>
+          </div>
+
           <div className={`${styles.wide}`}>
             <button
               className="is-size-2 button is-large is-success is-fullwidth is-rounded"

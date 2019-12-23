@@ -1,10 +1,10 @@
 import { Progression } from '../../game/state/types';
 
-export type gameId = string;
+export type GameId = string;
 
-export type code = string;
+export type Code = string;
 
-export type accessToken = string;
+export type AccessToken = string;
 
 export interface GameSettings {
   duration: Date;
@@ -13,7 +13,7 @@ export interface GameSettings {
 }
 
 export interface Ranks {
-  gameId: gameId;
+  gameId: GameId;
   rankedAccountsIds: number[];
 }
 
