@@ -5,11 +5,12 @@ import styles from './styles.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../core/state';
 import { Leave, Remove, Pause, Resume, Rank } from '../../core/socket/state/actions';
-import { GameStatus } from '../../core/game/state/types';
+import { GameStatus, Progression } from '../../core/game/state/types';
 import { failedRequests } from '../../app';
 import isPlayerAdmin from '../../core/game/player-service';
 
 const Play = () => {
+  const progression = useSelector((state: RootState) => state.game.data.currentProgression);
   const isAdmin: boolean = isPlayerAdmin();
   const [isPaused, setIsPaused] = useState(false);
   const [pauseOrResume, setPauseOrResume] = useState('Pause');
@@ -29,6 +30,7 @@ const Play = () => {
   const dispatchRank = useDispatch<Dispatch<Rank>>();
   const dispatchPause = useDispatch<Dispatch<Pause>>();
   const dispatchResume = useDispatch<Dispatch<Resume>>();
+
   const leave = () => {
     dispatchLeave(new Leave(gameId));
   };
@@ -55,13 +57,30 @@ const Play = () => {
     }
   };
 
+  const renderSmall = (progression: Progression) => {
+    console.log(progression);
+    if (progression !== undefined) {
+      return <h1 className="title has-text-warning">Small: {progression.small}</h1>;
+    } else {
+      return <h1 className="title has-text-warning">Small: 5</h1>;
+    }
+  };
+
+  const renderBig = (progression: Progression) => {
+    if (progression !== undefined) {
+      return <h1 className="title has-text-warning">Big: {progression.big}</h1>;
+    } else {
+      return <h1 className="title has-text-warning">Big: 10</h1>;
+    }
+  };
+
   return (
     <>
       <Timer />
       <section className="hero is-primary is-fullheight has-text-centered">
         <div className="hero-body flex-column">
-          <h1 className="title has-text-warning">Small: 5</h1>
-          <h1 className="title has-text-primary-contrast">Big: 10</h1>
+          {renderSmall(progression)}
+          {renderBig(progression)}
           <div className={`${styles.wide}`}>
             <button
               className="is-size-2 button is-large is-warning is-fullwidth is-rounded"

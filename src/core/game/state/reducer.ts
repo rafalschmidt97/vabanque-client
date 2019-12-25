@@ -10,6 +10,7 @@ const initialState: GameState = {
     duration: new Date(0),
     entry: '',
     progression: [],
+    currentProgression: { small: 5, big: 10 },
     players: [],
     startedAt: new Date(0),
   },
@@ -87,7 +88,7 @@ export const GameReducer: Reducer<GameState, GameActions> = (state = initialStat
         ...state,
         data: {
           ...state.data,
-          progression: action.payload,
+          currentProgression: action.payload,
         },
       };
     }

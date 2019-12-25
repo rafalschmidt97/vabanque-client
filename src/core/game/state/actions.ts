@@ -58,7 +58,7 @@ export class Sync implements Action {
 export class Raise implements Action {
   readonly type = GameActionTypes.Raise;
 
-  constructor(public payload: Progression[]) {}
+  constructor(public payload: Progression) {}
 }
 
 export class Finish implements Action {

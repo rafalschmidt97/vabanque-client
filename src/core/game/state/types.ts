@@ -17,6 +17,7 @@ export interface GameData {
   duration: Date;
   entry: string;
   progression: Progression[];
+  currentProgression: Progression;
   players: Player[];
   startedAt: Date;
 }
