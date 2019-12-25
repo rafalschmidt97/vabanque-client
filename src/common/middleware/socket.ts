@@ -45,7 +45,7 @@ const webSocket: Middleware = () => next => action => {
       break;
     case SocketActionTypes.Create:
       sendAction('create', {
-        duration: '05:30',
+        duration: '05:00',
         entry: action.payload.entry,
         progression: action.payload.progression,
       });

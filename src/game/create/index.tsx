@@ -51,7 +51,7 @@ const CreateGame = () => {
                 <div className={`tags has-addons ${styles.top} is-centered `}>
                   <span className="tag is-warning is-size-3">0</span>
                   <span className="tag is-warning is-size-3">5</span>
-                  <span className="tag is-info is-size-3">3</span>
+                  <span className="tag is-info is-size-3">0</span>
                   <span className="tag is-info is-size-3">0</span>
                 </div>
 
