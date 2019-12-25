@@ -11,12 +11,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Create } from '../../core/socket/state/actions';
 import { RootState } from '../../core/state';
 import { failedRequests } from '../../app';
+import { useHistory } from 'react-router';
 
 const CreateGame = () => {
+  const history = useHistory();
   let createFailed = useSelector((state: RootState) => state.game.failedRequests.create);
   const dispatchCreate = useDispatch<Dispatch<Create>>();
 
   const onSubmit = (form: FormValues, setSubmitting: (isSubmitting: boolean) => void) => {
+    console.log('whaat');
     dispatchCreate(
       new Create({
         duration: new Date(300000),
@@ -76,14 +79,32 @@ const CreateGame = () => {
                   </div>
                 </div>
                 <div className={`field ${styles.create}`}>
-                  <div className="control">
-                    <button
-                      className={`is-size-2 button is-large is-light-purple is-fullwidth is-rounded `}
-                      type="submit"
-                      disabled={isSubmitting}
-                    >
-                      Create
-                    </button>
+                  <div className="columns is-mobile">
+                    <div className="control">
+                      <div className="column">
+                        <button
+                          className={`is-size-3 button is-danger is-fullwidth is-rounded `}
+                          disabled={isSubmitting}
+                          onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                            e.preventDefault();
+                            history.goBack();
+                          }}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                    <div className="column">
+                      <div className="control">
+                        <button
+                          className={`is-size-3 button  is-light-purple is-fullwidth is-rounded `}
+                          type="submit"
+                          disabled={isSubmitting}
+                        >
+                          Create
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Form>
