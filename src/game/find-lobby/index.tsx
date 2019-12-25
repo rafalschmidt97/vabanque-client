@@ -10,6 +10,7 @@ import JoinButton from './join';
 import { Join } from '../../core/socket/state/actions';
 import { RootState } from '../../core/state';
 import { failedRequests } from '../../app';
+import GoBack from '../../common/component/go-back-button';
 
 const FindLobby = () => {
   let joinFailed = useSelector((state: RootState) => state.game.failedRequests.join);
@@ -34,6 +35,7 @@ const FindLobby = () => {
       <Helmet>
         <title>Find Lobby</title>
       </Helmet>
+      <GoBack />
       <section className="hero is-primary is-fullheight">
         <div className="hero-body">
           <Formik
