@@ -19,7 +19,6 @@ const CreateGame = () => {
   const dispatchCreate = useDispatch<Dispatch<Create>>();
 
   const onSubmit = (form: FormValues, setSubmitting: (isSubmitting: boolean) => void) => {
-    console.log('whaat');
     dispatchCreate(
       new Create({
         duration: new Date(300000),

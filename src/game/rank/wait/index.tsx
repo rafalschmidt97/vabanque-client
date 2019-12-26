@@ -1,11 +1,10 @@
 import React from 'react';
-import styles from '../styles.module.scss';
 
 const RankWait = () => {
   return (
     <>
-      <div className={`${styles.pageloader} ${styles.active}`}>
-        <span className="title">Wait for admin to rank players</span>
+      <div className={`pageloader is-active`}>
+        <span className="title is-size-5">Wait for admin to rank players</span>
       </div>
     </>
   );
