@@ -15,7 +15,7 @@ const StartGame = () => {
           <div className="container">
             <div className="container has-padding-bottom-75">
               <button
-                className="button is-large is-success  is-fullwidth is-rounded  is-size-2"
+                className="button is-success is-fullwidth is-rounded is-size-2"
                 onClick={() => {
                   history.push('create');
                 }}
@@ -25,7 +25,7 @@ const StartGame = () => {
             </div>
             <div className="container has-margin-top-50">
               <button
-                className="is-size-2 button is-large is-info is-fullwidth is-rounded"
+                className="button is-info is-fullwidth is-rounded is-size-2"
                 onClick={() => {
                   history.push('find-lobby');
                 }}

@@ -12,7 +12,7 @@ const Join = (props: Props) => {
       <div className="control">
         <button
           type="submit"
-          className={classNames('is-size-2 button is-large is-success is-fullwidth is-rounded', {
+          className={classNames('is-size-2 button is-success is-fullwidth is-rounded', {
             'is-success': !props.joinFailed,
             'is-danger': props.joinFailed,
           })}

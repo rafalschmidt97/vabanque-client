@@ -78,7 +78,10 @@ const webSocket: Middleware = () => next => action => {
       sendAction('rank', { gameId: action.payload });
       break;
     case SocketActionTypes.Finish:
-      sendAction('finish', { gameId: action.payload });
+      sendAction('finish', {
+        gameId: action.payload.gameId,
+        rankedAccountsId: action.payload.rankedAccountsIds,
+      });
       break;
     case SocketActionTypes.Disconnect:
       if (socket !== null) {
