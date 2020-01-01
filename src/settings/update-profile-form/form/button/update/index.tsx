@@ -4,7 +4,7 @@ type Props = {
   isSubmitting: boolean;
 };
 
-const UpdateButton = (props: Props) => {
+const Update = (props: Props) => {
   return (
     <div className="control">
       <button type="submit" className="button is-primary is-large" disabled={props.isSubmitting}>
@@ -14,4 +14,4 @@ const UpdateButton = (props: Props) => {
   );
 };
 
-export default UpdateButton;
+export default Update;

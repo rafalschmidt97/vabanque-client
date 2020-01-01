@@ -4,8 +4,7 @@ import Sky from 'react-sky';
 import chip from './images/chip.png';
 import logo from './images/logo.png';
 import styles from './styles.module.scss';
-import LoginFacebook from './external-auth/Facebook';
-import LoginGoogle from './external-auth/Google';
+import LoginForm from './form';
 
 const gradient = 'linear-gradient(to top, #c31432, #240b36)';
 
@@ -22,14 +21,11 @@ const LoginComponent = () => {
           </figure>
         </div>
       </section>
-      <section className="hero has-margin-top-20">
-        <div className="hero-body">
+      <section className="hero">
+        <div className="has-padding-10 has-margin-5">
           <div className="columns">
             <div className="container has-text-centered column">
-              <LoginFacebook />
-            </div>
-            <div className="container has-text-centered column has-margin-top-15">
-              <LoginGoogle />
+              <LoginForm />
             </div>
           </div>
         </div>

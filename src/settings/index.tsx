@@ -1,12 +1,13 @@
 import React, { Dispatch } from 'react';
 import Helmet from 'react-helmet';
 import FooterMenu from '../common/component/footer-menu';
-import styles from './styles.module.scss';
 import { useDispatch } from 'react-redux';
 import { Logout } from '../core/auth/state/actions';
+import { useHistory } from 'react-router';
 
 const Settings = () => {
   const dispatchLogout = useDispatch<Dispatch<Logout>>();
+  const history = useHistory();
 
   return (
     <>
@@ -17,13 +18,18 @@ const Settings = () => {
         <div className="hero-body">
           <div className="container">
             <div className="container has-padding-bottom-75">
-              <button className={`${styles.big} button is-large is-info is-fullwidth is-rounded`}>
+              <button
+                className={`is-size-2 button is-large is-info is-fullwidth is-rounded`}
+                onClick={() => {
+                  history.push('update-profile');
+                }}
+              >
                 Update Profile
               </button>
             </div>
-            <div className="container has-margin-top-75">
+            <div className="container has-margin-top-50">
               <button
-                className={`${styles.big} button is-large is-danger is-fullwidth is-rounded`}
+                className={`is-size-2 button is-large is-danger is-fullwidth is-rounded`}
                 onClick={() => dispatchLogout(new Logout())}
               >
                 Logout

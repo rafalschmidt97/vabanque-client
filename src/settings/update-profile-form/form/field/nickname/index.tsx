@@ -1,13 +1,13 @@
 import React from 'react';
 import { Field } from 'formik';
-import Error from '../../../../../common/component/error';
+import ErrorMessage from '../../../../../common/component/error';
 import classNames from 'classnames';
 
 type Props = {
   hasErrors: boolean;
 };
 
-const NicknameField = (props: Props) => {
+const Nickname = (props: Props) => {
   return (
     <>
       <div className="control">
@@ -24,11 +24,11 @@ const NicknameField = (props: Props) => {
               'is-danger': props.hasErrors,
             })}
           />
-          <Error fieldName="nickname" isVisible={props.hasErrors} />
+          <ErrorMessage fieldName="nickname" isVisible={props.hasErrors} color="has-text-danger" />
         </div>
       </div>
     </>
   );
 };
 
-export default NicknameField;
+export default Nickname;

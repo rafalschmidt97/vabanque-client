@@ -5,12 +5,13 @@ import classNames from 'classnames';
 type Props = {
   fieldName: string;
   isVisible: boolean;
+  color: string;
 };
 
-const Error = (props: Props) => {
+const ErrorLabel = (props: Props) => {
   return (
     <div
-      className={classNames('has-text-danger', {
+      className={classNames(props.color, {
         'is-invisible': !props.isVisible,
       })}
     >
@@ -22,4 +23,4 @@ const Error = (props: Props) => {
   );
 };
 
-export default Error;
+export default ErrorLabel;

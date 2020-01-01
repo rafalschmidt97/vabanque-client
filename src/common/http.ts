@@ -5,13 +5,15 @@ import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import isProduction from './util/is-production';
 import localStorageService from '../core/auth/localStorageService';
 import authApi from '../core/auth/api';
+import AppConstants from './constants';
 
 const refreshTokenEndpoint = '/auth/refresh';
+const loginEndpoint = '/auth/sign-in';
 const unauthorized = 401;
 const forbidden = 403;
 
 const httpClient = axios.create({
-  baseURL: isProduction ? 'https://example.com/api' : 'http://localhost:8080',
+  baseURL: isProduction ? 'https://example.com/api' : `${AppConstants.appUrl}`,
 });
 
 let isAlreadyFetchingAccessToken = false;
@@ -72,7 +74,7 @@ httpClient.interceptors.response.use(
 httpClient.interceptors.request.use(config => {
   const accessToken = localStorageService.getAccessToken();
 
-  if (accessToken && config.url !== refreshTokenEndpoint) {
+  if (config.url !== refreshTokenEndpoint && config.url !== loginEndpoint && accessToken !== null) {
     setAuthorizationHeader(config, accessToken);
   }
   return config;

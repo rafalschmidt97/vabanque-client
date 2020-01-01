@@ -1,28 +1,31 @@
+import { GameState } from './../game/state/types';
+import { GameReducer } from './../game/state/reducer';
 import { ProfileState } from './../profile/state/types';
 import { ProfileReducer } from './../profile/state/reducer';
-import { OverviewReducer } from '../overview/state/reducer';
-import { OverviewState } from '../overview/state/types';
-import { applyMiddleware, combineReducers, compose, createStore, Reducer, Store } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { combineReducers, Reducer, Store } from 'redux';
 import thunk from 'redux-thunk';
 import actionToPlainObject from '../../common/middleware/action-to-plain-object';
 import isProduction from '../../common/util/is-production';
 import { AuthReducer } from '../auth/state/reducer';
-import clearLocalStorageOnLogout from '../../common/middleware/clearLocalStorageOnLogout';
-import setTokens from '../../common/middleware/setTokens';
+import clearLocalStorageOnLogout from '../../common/middleware/clear-local-storage-on-logout';
+import setTokens from '../../common/middleware/set-tokens';
 import { AuthState } from '../auth/state/types';
-import updateProfile from '../../common/middleware/setProfile';
+import updateProfile from '../../common/middleware/set-profile';
+import scoket from '../../common/middleware/socket';
+import socketRedirect from '../../common/middleware/socket-redirect';
+import { configureStore } from '@reduxjs/toolkit';
+import getPlayerNames from '../../common/middleware/get-player-name-on-sync';
 
 export interface RootState {
   auth: AuthState;
-  overview: OverviewState;
   profile: ProfileState;
+  game: GameState;
 }
 
 const RootReducers: Reducer = combineReducers({
   auth: AuthReducer,
-  overview: OverviewReducer,
   profile: ProfileReducer,
+  game: GameReducer,
 });
 
 export function createStoreWithMiddleware(): Store {
@@ -32,12 +35,14 @@ export function createStoreWithMiddleware(): Store {
     clearLocalStorageOnLogout,
     setTokens,
     updateProfile,
+    scoket,
+    socketRedirect,
+    getPlayerNames,
   ];
-  const middleware = applyMiddleware(...middlewares);
 
   if (isProduction) {
-    return createStore(RootReducers, compose(middleware));
+    return configureStore({ reducer: RootReducers, middleware: middlewares });
   } else {
-    return createStore(RootReducers, composeWithDevTools(middleware));
+    return configureStore({ reducer: RootReducers, middleware: middlewares });
   }
 }

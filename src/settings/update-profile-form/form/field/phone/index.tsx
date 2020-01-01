@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field } from 'formik';
-import Error from '../../../../../common/component/error';
+import ErrorMessage from '../../../../../common/component/error';
 import classNames from 'classnames';
 import styles from './styles.module.scss';
 
@@ -29,7 +29,11 @@ const Phone = (props: Props) => {
               'is-danger': props.hasErrors,
             })}
           />
-          <Error fieldName="phoneNumber" isVisible={props.hasErrors} />
+          <ErrorMessage
+            fieldName="phoneNumber"
+            isVisible={props.hasErrors}
+            color="has-text-danger"
+          />
         </div>
       </div>
     </>

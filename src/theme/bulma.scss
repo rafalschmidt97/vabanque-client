@@ -1,15 +1,20 @@
 @import '~bulma/sass/utilities/initial-variables';
 @import '~bulma/sass/utilities/mixins';
 @import '~bulma/sass/utilities/functions';
+
 $dimensions: 16 24 32 48 64 96 128 256;
 $primary: #c31432;
 
-$dark-primary: #2c0b36;
+$primary-contrast: #ffce00;
+$primary-contrast-invert: findColorInvert($primary-contrast);
+$dark-primary: #3e1949;
 $dark-primary-invert: findColorInvert($dark-primary);
 $facebook: #4267b2;
 $facebook-invert: findColorInvert($facebook);
 $google: #4285f4;
 $google-invert: findColorInvert($google);
+$light-purple: #bd7bcd;
+$light-purple-invert: findColorInvert($google);
 
 @import '~bulma/sass/utilities/derived-variables';
 $addColors: (
@@ -24,6 +29,14 @@ $addColors: (
   'facebook': (
     $facebook,
     $facebook-invert,
+  ),
+  'light-purple': (
+    $light-purple,
+    $light-purple-invert,
+  ),
+  'primary-contrast': (
+    $primary-contrast,
+    $primary-contrast-invert,
   ),
 );
 $colors: map-merge($colors, $addColors);
