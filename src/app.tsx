@@ -10,6 +10,7 @@ import Settings from './settings';
 import UpdateProfileForm from './settings/update-profile-form';
 import Game from './game';
 import history from './common/history';
+import Money from './money';
 
 export const store = createStoreWithMiddleware();
 export const failedRequests = () => {
@@ -25,6 +26,7 @@ const App = () => {
           <ProtectedRoute path="/settings" component={Settings} />
           <ProtectedRoute path="/update-profile" component={UpdateProfileForm} />
           <ProtectedRoute path="/game" component={Game} />
+          <ProtectedRoute path="/money" component={Money} />
           <Redirect exact from="/" to="login" />
           <Route component={NotFound} />
         </Switch>

@@ -15,7 +15,14 @@ const FooterMenu = () => {
         >
           Game
         </div>
-        <div className={`${styles.thirdish} button is-large has-text-success`}>Money</div>
+        <div
+          className={`${styles.thirdish} button is-large has-text-success`}
+          onClick={() => {
+            history.push('/money');
+          }}
+        >
+          Money
+        </div>
         <div
           className={`${styles.third} button is-large has-text-info`}
           onClick={() => {

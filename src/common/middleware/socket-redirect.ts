@@ -17,19 +17,13 @@ const socketRedirect: Middleware = () => next => action => {
     case GameActionTypes.Leave:
       history.push('/settings');
       break;
-    case GameActionTypes.Finish:
-      console.log('redirecting to ranking screen if the user is admin');
-      console.log('redirecting to await ranking screen if the user is not admin');
-      break;
     case GameActionTypes.Disconnect:
       history.push('/settings');
       break;
     case SocketResponse.RankedWait:
-      console.log('rank wait');
       history.push('/game/rank/wait');
       break;
     case SocketResponse.RankedConfirm:
-      console.log('rank confirm');
       history.push('/game/rank/admin');
       break;
     default:
