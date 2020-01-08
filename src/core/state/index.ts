@@ -1,3 +1,5 @@
+import { FooterReducer } from './../footer-menu/state/reducer';
+import { FooterState } from './../footer-menu/state/types';
 import { GameState } from './../game/state/types';
 import { GameReducer } from './../game/state/reducer';
 import { ProfileState } from './../profile/state/types';
@@ -15,17 +17,20 @@ import scoket from '../../common/middleware/socket';
 import socketRedirect from '../../common/middleware/socket-redirect';
 import { configureStore } from '@reduxjs/toolkit';
 import getPlayerNames from '../../common/middleware/get-player-name-on-sync';
+import footerMenuRedirect from '../../common/middleware/footer-menu-redirect';
 
 export interface RootState {
   auth: AuthState;
   profile: ProfileState;
   game: GameState;
+  footer: FooterState;
 }
 
 const RootReducers: Reducer = combineReducers({
   auth: AuthReducer,
   profile: ProfileReducer,
   game: GameReducer,
+  footer: FooterReducer,
 });
 
 export function createStoreWithMiddleware(): Store {
@@ -37,6 +42,7 @@ export function createStoreWithMiddleware(): Store {
     updateProfile,
     scoket,
     socketRedirect,
+    footerMenuRedirect,
     getPlayerNames,
   ];
 

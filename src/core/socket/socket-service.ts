@@ -17,6 +17,7 @@ import { Store } from 'redux';
 import { RootState } from '../state';
 import { Sync as SocketSync } from './state/actions';
 import history from '../../common/history';
+import { NavigateSettings } from '../footer-menu/state/actions';
 
 class SocketService {
   onMessage = (store: Store<RootState>) => (message: MessageEvent) => {
@@ -64,6 +65,10 @@ class SocketService {
         break;
       case SocketResponse.RankedConfirm:
         history.push('/game/rank/admin');
+        break;
+      case SocketResponse.Finished:
+        store.dispatch(new NavigateSettings());
+        history.push('/settings');
         break;
       case SocketResponse.Error:
         switch (decodedMessage.payload.type) {
