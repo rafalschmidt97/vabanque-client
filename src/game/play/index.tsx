@@ -58,7 +58,6 @@ const Play = () => {
   };
 
   const renderSmall = (progression: Progression) => {
-    console.log(progression);
     if (progression !== undefined) {
       return <h1 className="title has-text-warning">Small: {progression.small}</h1>;
     } else {
