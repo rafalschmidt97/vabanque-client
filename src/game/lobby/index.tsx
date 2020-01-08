@@ -50,8 +50,10 @@ const Lobby = () => {
                     })}
                   >
                     <i className="fas fa-user has-margin-right-10 " />
-                    <label className="label is-large has-text-light">{player.nickname}</label>
                   </span>
+                  <label className="label is-large has-text-light has-margin-left-10">
+                    {player.nickname}
+                  </label>
                 </div>
               ))}
             </div>
