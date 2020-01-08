@@ -14,7 +14,11 @@ $facebook-invert: findColorInvert($facebook);
 $google: #4285f4;
 $google-invert: findColorInvert($google);
 $light-purple: #bd7bcd;
-$light-purple-invert: findColorInvert($google);
+$light-purple-invert: findColorInvert($light-purple);
+$debtor: #8291ff;
+$debtor-invert: findColorInvert($debtor);
+$debtor-trash: #6c2b80;
+$debtor-trash-invert: findColorInvert($debtor);
 
 @import '~bulma/sass/utilities/derived-variables';
 $addColors: (
@@ -37,6 +41,14 @@ $addColors: (
   'primary-contrast': (
     $primary-contrast,
     $primary-contrast-invert,
+  ),
+  'debtor': (
+    $debtor,
+    $debtor-invert,
+  ),
+  'debtor-trash': (
+    $debtor-trash,
+    $debtor-trash-invert,
   ),
 );
 $colors: map-merge($colors, $addColors);
