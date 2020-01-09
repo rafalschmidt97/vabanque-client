@@ -102,7 +102,7 @@ const AdminRank = () => {
                                   >
                                     {players.map(player => (
                                       <option value={index} key={`${index} ${player.accountId}`}>
-                                        {player.nickname}
+                                        {player !== undefined && player.nickname}
                                       </option>
                                     ))}
                                   </select>

@@ -27,91 +27,95 @@ const Money = () => {
   };
 
   const renderCreditors = (creditors: Creditor[]) => {
-    if (creditors.length !== 0) {
-      return (
-        <>
-          {creditors.map(creditor => {
-            let isModalOpen = false;
-            return (
-              <div key={creditor.id}>
-                <div className={`column has-background-primary-contrast ${styles.border}`}>
-                  <div className="columns is-full-width is-mobile">
-                    <div className="column is-2">
-                      <span className={`icon is-large ${styles.center}`}>
-                        <i className="fas fa-user fa-2x" />
-                      </span>
-                    </div>
-                    <div className="column is-8 has-text-centered">
-                      <span className={`is-size-2 has-text-light ${styles.center}`}>
-                        {creditor.nickname}{' '}
-                      </span>
-                      <span className={`is-size-2 has-text-light ${styles.center}`}>
-                        {creditor.amount}
-                      </span>
-                    </div>
-                    <div
-                      className="column is-2"
-                      onClick={() => {
-                        isModalOpen = true;
-                        window.alert(
-                          `${creditor.nickname}'s phone number is ${creditor.phoneNumber}`,
-                        );
-                      }}
-                    >
-                      <span className={`icon is-large has-text-success ${styles.center}`}>
-                        <i className="fas fa-mobile-alt fa-3x" />
-                      </span>
+    if (creditors !== undefined) {
+      if (creditors.length !== 0) {
+        return (
+          <>
+            {creditors.map(creditor => {
+              let isModalOpen = false;
+              return (
+                <div key={creditor.id}>
+                  <div className={`column has-background-primary-contrast ${styles.border}`}>
+                    <div className="columns is-full-width is-mobile">
+                      <div className="column is-2">
+                        <span className={`icon is-large ${styles.center}`}>
+                          <i className="fas fa-user fa-2x" />
+                        </span>
+                      </div>
+                      <div className="column is-8 has-text-centered">
+                        <span className={`is-size-2 has-text-light ${styles.center}`}>
+                          {creditor.nickname}{' '}
+                        </span>
+                        <span className={`is-size-2 has-text-light ${styles.center}`}>
+                          {creditor.amount}
+                        </span>
+                      </div>
+                      <div
+                        className="column is-2"
+                        onClick={() => {
+                          isModalOpen = true;
+                          window.alert(
+                            `${creditor.nickname}'s phone number is ${creditor.phoneNumber}`,
+                          );
+                        }}
+                      >
+                        <span className={`icon is-large has-text-success ${styles.center}`}>
+                          <i className="fas fa-mobile-alt fa-3x" />
+                        </span>
+                      </div>
                     </div>
                   </div>
+                  <Modal isActive={isModalOpen} text={creditor.phoneNumber} />
                 </div>
-                <Modal isActive={isModalOpen} text={creditor.phoneNumber} />
-              </div>
-            );
-          })}
-        </>
-      );
-    } else {
-      return <></>;
+              );
+            })}
+          </>
+        );
+      } else {
+        return <></>;
+      }
     }
   };
 
   const renderDebtors = (debtors: Debtor[]) => {
-    if (debtors.length !== 0) {
-      return (
-        <>
-          {debtors.map(debtor => (
-            <div className={`column has-background-debtor ${styles.border}`} key={debtor.id}>
-              <div className="columns is-full-width is-mobile">
-                <div className="column is-2">
-                  <span className={`icon is-large ${styles.center}`}>
-                    <i className="fas fa-user fa-2x" />
-                  </span>
-                </div>
-                <div className="column is-8  has-text-centered">
-                  <span className={`is-size-2 has-text-light ${styles.center}`}>
-                    {debtor.nickname}{' '}
-                  </span>
-                  <span className={`is-size-2 has-text-light ${styles.center}`}>
-                    {debtor.amount}
-                  </span>
-                </div>
-                <div
-                  className="column is-2"
-                  onClick={() => {
-                    deleteDebtor(debtor.id);
-                  }}
-                >
-                  <span className={`icon is-large has-text-debtor-trash ${styles.center}`}>
-                    <i className="fas fa-trash-alt fa-2x" />
-                  </span>
+    if (debtors !== undefined) {
+      if (debtors.length !== 0) {
+        return (
+          <>
+            {debtors.map(debtor => (
+              <div className={`column has-background-debtor ${styles.border}`} key={debtor.id}>
+                <div className="columns is-full-width is-mobile">
+                  <div className="column is-2">
+                    <span className={`icon is-large ${styles.center}`}>
+                      <i className="fas fa-user fa-2x" />
+                    </span>
+                  </div>
+                  <div className="column is-8  has-text-centered">
+                    <span className={`is-size-2 has-text-light ${styles.center}`}>
+                      {debtor.nickname}{' '}
+                    </span>
+                    <span className={`is-size-2 has-text-light ${styles.center}`}>
+                      {debtor.amount}
+                    </span>
+                  </div>
+                  <div
+                    className="column is-2"
+                    onClick={() => {
+                      deleteDebtor(debtor.id);
+                    }}
+                  >
+                    <span className={`icon is-large has-text-debtor-trash ${styles.center}`}>
+                      <i className="fas fa-trash-alt fa-2x" />
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </>
-      );
-    } else {
-      return <></>;
+            ))}
+          </>
+        );
+      } else {
+        return <></>;
+      }
     }
   };
 

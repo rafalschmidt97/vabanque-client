@@ -7,6 +7,7 @@ import { Leave, Start } from '../../core/socket/state/actions';
 import isPlayerAdmin from '../../core/game/player-service';
 import { failedRequests } from '../../app';
 import classNames from 'classnames';
+import { Player } from '../../core/game/state/types';
 
 const Lobby = () => {
   const code = useSelector((state: RootState) => state.game.data.code);
@@ -30,6 +31,32 @@ const Lobby = () => {
     }, 100);
   };
 
+  const renderPlayers = (players: Player[]) => {
+    if (players !== undefined) {
+      if (players.length !== 0) {
+        return (
+          <>
+            {players.map(player => (
+              <div className={`column ${styles.first}`} key={player.accountId}>
+                <span
+                  className={classNames('icon is-size-2 ', {
+                    'has-text-facebook': !player.isAdmin,
+                    'has-text-danger': player.isAdmin,
+                  })}
+                >
+                  <i className="fas fa-user has-margin-right-10 " />
+                </span>
+                <label className="label is-large has-text-light has-margin-left-10">
+                  {player !== undefined && player.nickname}
+                </label>
+              </div>
+            ))}
+          </>
+        );
+      }
+    }
+  };
+
   return (
     <>
       <section className="hero is-primary is-fullheight has-text-centered">
@@ -40,23 +67,7 @@ const Lobby = () => {
             </div>
           </section>
           <div className="is-full-width ">
-            <div className={`columns ${styles.left}`}>
-              {players.map(player => (
-                <div className={`column ${styles.first}`} key={player.accountId}>
-                  <span
-                    className={classNames('icon is-size-2 ', {
-                      'has-text-facebook': !player.isAdmin,
-                      'has-text-danger': player.isAdmin,
-                    })}
-                  >
-                    <i className="fas fa-user has-margin-right-10 " />
-                  </span>
-                  <label className="label is-large has-text-light has-margin-left-10">
-                    {player.nickname}
-                  </label>
-                </div>
-              ))}
-            </div>
+            <div className={`columns ${styles.left}`}>{renderPlayers(players)}</div>
           </div>
           <section className={`section ${styles.center}`}>
             <div className="container">
