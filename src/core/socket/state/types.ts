@@ -43,4 +43,5 @@ export enum SocketErrorResponse {
   CreateFailed = 'GAME_CREATE_FAILED',
   StartFailed = 'GAME_START_FAILED',
   ResumeFailed = 'GAME_RESUME_FAILED',
+  LeaveFailed = 'GAME_LEAVE_FAILED',
 }

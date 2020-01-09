@@ -68,7 +68,6 @@ class SocketService {
         break;
       case SocketResponse.Finished:
         store.dispatch(new NavigateSettings());
-        history.push('/settings');
         break;
       case SocketResponse.Error:
         switch (decodedMessage.payload.type) {
@@ -83,6 +82,9 @@ class SocketService {
             break;
           case SocketErrorResponse.ResumeFailed:
             store.dispatch(new FailedResume());
+            break;
+          case SocketErrorResponse.LeaveFailed:
+            store.dispatch(new NavigateSettings());
         }
     }
   };

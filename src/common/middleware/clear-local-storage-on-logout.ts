@@ -5,20 +5,20 @@ import localStorageService from '../../core/auth/localStorageService';
 import authApi from '../../core/auth/api';
 import history from '../history';
 
-const clearLocalStorageOnLogout: Middleware = () => next => action => {
+const clearLocalStorageOnLogout: Middleware = () => next => async action => {
   if (action.type === AuthActionTypes.Logout) {
     const logoutRequest: LogoutRequest = {
       refreshToken: localStorageService.getRefreshToken(),
     };
-    authApi
+    await authApi
       .logout(logoutRequest)
       .then(() => {
         localStorageService.clear();
-        history.push('/');
+        history.push('/login');
       })
       .catch(() => {
         localStorageService.clear();
-        history.push('/');
+        history.push('/login');
       });
   }
   next({ ...action });
