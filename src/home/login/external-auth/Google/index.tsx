@@ -4,16 +4,16 @@ import authApi from '../../../../core/auth/api';
 import { Login } from '../../../../core/auth/state/actions';
 import { Dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
+import { NavigateGame } from '../../../../core/footer-menu/state/actions';
 
 const LoginGoogle = () => {
   const dispatchLogin = useDispatch<Dispatch<Login>>();
-  const history = useHistory();
+  const dispatchNavigateGame = useDispatch<Dispatch<NavigateGame>>();
 
   const login = () => {
     authApi.signInGoogle().then(token => {
       dispatchLogin(new Login(token));
-      history.push('game');
+      dispatchNavigateGame(new NavigateGame());
     });
   };
 

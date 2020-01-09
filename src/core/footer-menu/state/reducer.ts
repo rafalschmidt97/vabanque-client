@@ -3,9 +3,9 @@ import { FooterState } from './types';
 import { FooterActions, FooterActionTypes } from './actions';
 
 const initialState: FooterState = {
-  isGameActive: false,
+  isGameActive: true,
   isMoneyActive: false,
-  isSettingsActive: true,
+  isSettingsActive: false,
 };
 
 export const FooterReducer: Reducer<FooterState, FooterActions> = (

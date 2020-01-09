@@ -2,19 +2,18 @@ import React, { Dispatch, useState } from 'react';
 import { FormSchema, FormValues, initialFormValues } from './types';
 import { useDispatch } from 'react-redux';
 import { Login } from '../../../core/auth/state/actions';
-import { useHistory } from 'react-router';
 import authApi from '../../../core/auth/api';
 import { AxiosError } from 'axios';
 import { Form, Formik, FormikProps } from 'formik';
 import Email from './field/email';
 import Password from './field/password';
 import { Token } from '../../../core/auth/types';
+import { NavigateGame } from '../../../core/footer-menu/state/actions';
 
 const LoginForm = () => {
   const [formValues] = useState<FormValues>(initialFormValues);
-
   const dispatchLogin = useDispatch<Dispatch<Login>>();
-  const history = useHistory();
+  const disptachNavigateGame = useDispatch<Dispatch<NavigateGame>>();
 
   const onSubmit = (
     form: FormValues,
@@ -25,7 +24,7 @@ const LoginForm = () => {
       .signInWithEmail(form)
       .then((token: Token) => {
         dispatchLogin(new Login(token));
-        history.push('game');
+        disptachNavigateGame(new NavigateGame());
       })
       .catch((error: AxiosError) => {
         if (error.response !== undefined) {

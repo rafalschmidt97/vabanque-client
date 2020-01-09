@@ -3,16 +3,16 @@ import styles from '../../styles.module.scss';
 import authApi from '../../../../core/auth/api';
 import { Login } from '../../../../core/auth/state/actions';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
+import { NavigateGame } from '../../../../core/footer-menu/state/actions';
 
 const LoginFacebook = () => {
   const dispatchLogin = useDispatch<Dispatch<Login>>();
-  const history = useHistory();
+  const dispatchNavigateGame = useDispatch<Dispatch<NavigateGame>>();
 
   const login = () => {
     authApi.signInFacebook().then(token => {
       dispatchLogin(new Login(token));
-      history.push('game');
+      dispatchNavigateGame(new NavigateGame());
     });
   };
 
