@@ -53,4 +53,10 @@ $addColors: (
 );
 $colors: map-merge($colors, $addColors);
 @import '~bulma-helpers/css/bulma-helpers.min.css';
+
 @import '~bulma/bulma.sass';
+
+.hero.is-fullheight {
+  min-height: 667px;
+  min-width: 375px;
+}

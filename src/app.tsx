@@ -11,6 +11,7 @@ import UpdateProfileForm from './settings/update-profile-form';
 import Game from './game';
 import history from './common/history';
 import Money from './money';
+import wrapHOC from './common/component/wrapper';
 
 export const store = createStoreWithMiddleware();
 export const failedRequests = () => {
@@ -35,4 +36,6 @@ const App = () => {
   );
 };
 
-export default App;
+const WrappedApp = wrapHOC(App);
+
+export default WrappedApp;

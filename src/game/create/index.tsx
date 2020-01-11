@@ -59,7 +59,7 @@ const CreateGame = () => {
 
                 <div className="field ">
                   <div
-                    className={`control has-text-centered has-margin-bottom-75 ${styles.center}`}
+                    className={`control has-text-centered has-margin-bottom-50 ${styles.center}`}
                   >
                     <Field
                       name="entry"
@@ -77,7 +77,7 @@ const CreateGame = () => {
                     />
                   </div>
                 </div>
-                <div className={`field ${styles.create}`}>
+                <div className={`field`}>
                   <div className="columns is-mobile">
                     <div className="control">
                       <div className="column">
@@ -110,8 +110,8 @@ const CreateGame = () => {
             )}
           />
         </div>
+        <FooterMenu />
       </section>
-      <FooterMenu />
     </>
   );
 };

@@ -9,14 +9,19 @@ import Modal from './contact';
 const Money = () => {
   const initialCreditors: Creditor[] = [];
   const [creditors, setCreditors] = useState(initialCreditors);
+  const [triedGettingCreditors, setTriedGettingCreditors] = useState(false);
   const initialDebtors: Debtor[] = [];
   const [debtors, setDebtors] = useState(initialDebtors);
+  const [triedGettingDebtors, setTriedGettingDebtors] = useState(false);
+
   useEffect(() => {
     debtorApi.getCreditors({ page: 1 }).then(data => {
       setCreditors(data);
+      setTriedGettingCreditors(true);
     });
     debtorApi.getDebtors({ page: 1 }).then(data => {
       setDebtors(data);
+      setTriedGettingDebtors(true);
     });
   }, []);
 
@@ -119,18 +124,36 @@ const Money = () => {
     }
   };
 
+  const renderNoContentMessage = (debtors: Debtor[], creditors: Creditor[]) => {
+    if (debtors !== undefined && creditors !== undefined) {
+      if (
+        debtors.length === 0 &&
+        creditors.length === 0 &&
+        triedGettingCreditors === true &&
+        triedGettingDebtors === true
+      ) {
+        return (
+          <div className="has-text-centered">
+            <p className="title">Currently you don&apos;t have any debtors or creditors</p>
+          </div>
+        );
+      }
+    }
+  };
+
   return (
     <>
       <Helmet>
         <title>Money</title>
       </Helmet>
-      <div className="box is-full-width has-text-centered is-marginless">
-        <h1 className="title has-text-black">Own List</h1>
-      </div>
       <section className="hero is-primary is-fullheight">
+        <div className="box is-full-width has-text-centered is-marginless">
+          <h1 className="title has-text-black">Own List</h1>
+        </div>
         <div className="hero-body flex-column is-paddingless">
-          <div className="columns is-full-width">
+          <div className="columns is-full-width is-desktop">
             {renderCreditors(creditors)} {renderDebtors(debtors)}
+            {renderNoContentMessage(debtors, creditors)}
           </div>
         </div>
         <FooterMenu />

@@ -67,9 +67,9 @@ const Lobby = () => {
             </div>
           </section>
           <div className="is-full-width ">
-            <div className={`columns ${styles.left}`}>{renderPlayers(players)}</div>
+            <div className={`columns ${styles.left} is-desktop`}>{renderPlayers(players)}</div>
           </div>
-          <section className={`section ${styles.center}`}>
+          <section className={`section ${styles.center} ${styles.padding}`}>
             <div className="container">
               <button
                 className="is-size-2 button is-large is-success is-fullwidth is-rounded has-margin-bottom-50"

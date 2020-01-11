@@ -11,6 +11,7 @@ import { Join } from '../../core/socket/state/actions';
 import { RootState } from '../../core/state';
 import { failedRequests } from '../../app';
 import GoBack from '../../common/component/go-back-button';
+import styles from './styles.module.scss';
 
 const FindLobby = () => {
   let joinFailed = useSelector((state: RootState) => state.game.failedRequests.join);
@@ -37,7 +38,7 @@ const FindLobby = () => {
       </Helmet>
       <GoBack />
       <section className="hero is-primary is-fullheight">
-        <div className="hero-body">
+        <div className={`hero-body ${styles.padding}`}>
           <Formik
             validationSchema={FormSchema}
             initialValues={initialFormValues}

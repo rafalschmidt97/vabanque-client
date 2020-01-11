@@ -31,18 +31,6 @@ const Play = () => {
   const dispatchPause = useDispatch<Dispatch<Pause>>();
   const dispatchResume = useDispatch<Dispatch<Resume>>();
 
-  const leave = () => {
-    dispatchLeave(new Leave(gameId));
-  };
-
-  const remove = () => {
-    dispatchRemove(new Remove(gameId));
-  };
-
-  const rank = () => {
-    dispatchRank(new Rank(gameId));
-  };
-
   const pauseOrUnpause = () => {
     if (pauseOrResume === 'Pause') {
       dispatchPause(new Pause(gameId));
@@ -76,8 +64,8 @@ const Play = () => {
   return (
     <>
       <Timer />
-      <section className="hero is-primary is-fullheight has-text-centered">
-        <div className="hero-body flex-column">
+      <section className={`hero is-primary ${styles.fullheight} has-text-centered`}>
+        <div className={`hero-body flex-column ${styles.padding}`}>
           {renderSmall(progression)}
           {renderBig(progression)}
           <div className={`${styles.wide}`}>
@@ -92,7 +80,7 @@ const Play = () => {
             <div className="column">
               <button
                 className="is-size-3 button is-large is-dark-primary is-fullwidth is-rounded"
-                onClick={() => remove()}
+                onClick={() => dispatchRemove(new Remove(gameId))}
                 disabled={isPaused}
               >
                 Remove
@@ -101,7 +89,7 @@ const Play = () => {
             <div className="column">
               <button
                 className="is-size-3 button is-large is-danger is-fullwidth is-rounded"
-                onClick={() => leave()}
+                onClick={() => dispatchLeave(new Leave(gameId))}
                 disabled={isPaused}
               >
                 Leave
@@ -113,7 +101,7 @@ const Play = () => {
             <button
               className="is-size-2 button is-large is-success is-fullwidth is-rounded"
               disabled={isPaused || !isAdmin}
-              onClick={() => rank()}
+              onClick={() => dispatchRank(new Rank(gameId))}
             >
               Rank
             </button>
