@@ -44,14 +44,14 @@ const AdminRank = () => {
   const initialFormValues: FormValues = getInitialFormValues(players);
 
   const onChange = (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     e: any,
     setFieldValue: (field: string, value: string[]) => void,
     values: FormValues,
   ) => {
     const ranks: string[] = values.ranks;
     const playerRank: number = e.target.value;
-    const playerName: string = e.target.options[e.target.selectedIndex].text;
-    ranks[playerRank] = playerName;
+    ranks[playerRank] = e.target.options[e.target.selectedIndex].text;
     setFieldValue('ranks', ranks);
   };
 
@@ -114,7 +114,7 @@ const AdminRank = () => {
                       ))}
                     </div>
                   )}
-                ></FieldArray>
+                />
 
                 <div className={`field ${styles.bot}`}>
                   <div className="control">

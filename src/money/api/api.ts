@@ -1,6 +1,6 @@
 import { Creditor, Debtor } from '../types';
 import httpClient from '../../common/http';
-import PagingRequest, { DeleteDebtorRequets } from './types';
+import PagingRequest, { DeleteDebtorRequest } from './types';
 
 class MoneyApi {
   getDebtors(params: PagingRequest): Promise<Debtor[]> {
@@ -11,7 +11,7 @@ class MoneyApi {
     return httpClient.get<Creditor[]>(`/debtors/self/creditors`, { params }).then(res => res.data);
   }
 
-  deleteDebtor(params: DeleteDebtorRequets) {
+  deleteDebtor(params: DeleteDebtorRequest) {
     return httpClient.delete(`/debtors/${params.debtorId}`).then(res => res.data);
   }
 }

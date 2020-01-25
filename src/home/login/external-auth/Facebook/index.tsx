@@ -24,11 +24,11 @@ const LoginFacebook = () => {
       }}
     >
       <span className="icon">
-        <i className="fab fa-facebook-f is-white"></i>
+        <i className="fab fa-facebook-f is-white" />
       </span>
       <span>Sign in with Facebook</span>
       <span className="icon">
-        <i className="fas fa-chevron-right"></i>
+        <i className="fas fa-chevron-right" />
       </span>
     </button>
   );

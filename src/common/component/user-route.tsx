@@ -12,7 +12,7 @@ export interface ProtectedRouteProps extends RouteProps {
   authenticationPath: string;
 }
 
-const UserRoute = ({ ...rest }: any) => {
+const UserRoute = ({ ...rest }) => {
   const dispatchLogin = useDispatch<Dispatch<Login>>();
   const dispatchNavigateGame = useDispatch<Dispatch<NavigateGame>>();
   const refreshToken = localStorageService.getRefreshToken();

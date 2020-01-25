@@ -13,7 +13,7 @@ const unauthorized = 401;
 const forbidden = 403;
 
 const httpClient = axios.create({
-  baseURL: isProduction ? 'https://example.com/api' : `${AppConstants.appUrl}`,
+  baseURL: isProduction ? AppConstants.productionAppUrl : AppConstants.appUrl,
 });
 
 let isAlreadyFetchingAccessToken = false;

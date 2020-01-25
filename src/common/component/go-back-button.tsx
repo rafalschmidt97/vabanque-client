@@ -15,7 +15,7 @@ const GoBack = () => {
         }}
       >
         <span className="icon is-small">
-          <i className="fas fa-arrow-circle-left is-size-2"></i>
+          <i className="fas fa-arrow-circle-left is-size-2" />
         </span>
       </button>
     </>

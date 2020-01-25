@@ -16,7 +16,7 @@ const ErrorLabel = (props: Props) => {
       })}
     >
       <span className="icon">
-        <i className="fas fa-exclamation-triangle"></i>
+        <i className="fas fa-exclamation-triangle" />
       </span>
       <ErrorMessage name={props.fieldName} />
     </div>

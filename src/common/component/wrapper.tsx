@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import styles from './styles.module.scss';
 
-const wrapHOC = (WrappedComponent: any) => {
+const wrapHOC = (WrappedComponent: FunctionComponent) => {
   class Wrapper extends React.PureComponent {
     render() {
       return (

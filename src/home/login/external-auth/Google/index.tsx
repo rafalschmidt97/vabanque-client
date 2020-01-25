@@ -27,7 +27,7 @@ const LoginGoogle = () => {
       <div className="columns is-mobile">
         <div className="column">
           <span className="icon">
-            <i className="fab fa-google is-white"></i>
+            <i className="fab fa-google is-white" />
           </span>
         </div>
         <div className="column">
@@ -35,7 +35,7 @@ const LoginGoogle = () => {
         </div>
         <div className="column">
           <span className="icon">
-            <i className="fas fa-chevron-right "></i>
+            <i className="fas fa-chevron-right " />
           </span>
         </div>
       </div>

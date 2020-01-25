@@ -18,6 +18,7 @@ const onClose = (store: Store<RootState>) => (error: CloseEvent) => {
   store.dispatch(new Disconnected());
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function sendAction(type: string, payload: any) {
   if (type !== '' && payload !== '') {
     if (socket !== null) {

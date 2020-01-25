@@ -3,6 +3,8 @@ import { Redirect, Route, RouteProps } from 'react-router';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../core/state';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export interface ProtectedRouteProps extends RouteProps {
   authenticationPath: string;
 }

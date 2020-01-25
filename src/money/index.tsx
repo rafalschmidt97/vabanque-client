@@ -129,8 +129,8 @@ const Money = () => {
       if (
         debtors.length === 0 &&
         creditors.length === 0 &&
-        triedGettingCreditors === true &&
-        triedGettingDebtors === true
+        triedGettingCreditors &&
+        triedGettingDebtors
       ) {
         return (
           <div className="has-text-centered">

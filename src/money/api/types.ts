@@ -2,6 +2,6 @@ export default interface PagingRequest {
   page: number;
 }
 
-export interface DeleteDebtorRequets {
+export interface DeleteDebtorRequest {
   debtorId: number;
 }
