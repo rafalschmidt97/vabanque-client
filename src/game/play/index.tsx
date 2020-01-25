@@ -1,10 +1,10 @@
-import React, { Dispatch, useState, useEffect } from 'react';
+import React, { Dispatch, useEffect, useState } from 'react';
 import FooterMenu from '../../common/component/footer-menu';
 import Timer from './timer';
 import styles from './styles.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../core/state';
-import { Leave, Remove, Pause, Resume, Rank } from '../../core/socket/state/actions';
+import { Leave, Pause, Rank, Remove, Resume } from '../../core/socket/state/actions';
 import { GameStatus, Progression } from '../../core/game/state/types';
 import { failedRequests } from '../../app';
 import isPlayerAdmin from '../../core/game/player-service';

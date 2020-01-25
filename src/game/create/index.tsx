@@ -1,9 +1,8 @@
 import React, { Dispatch } from 'react';
 import FooterMenu from '../../common/component/footer-menu';
 import Helmet from 'react-helmet';
-import { Form, Formik, FormikProps, Field } from 'formik';
-import { FormSchema, FormValues, initialProgression } from './types';
-import { initialFormValues } from './types';
+import { Field, Form, Formik, FormikProps } from 'formik';
+import { FormSchema, FormValues, initialFormValues, initialProgression } from './types';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
 import ErrorLabel from '../../common/component/error';

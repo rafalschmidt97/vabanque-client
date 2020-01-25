@@ -1,6 +1,5 @@
-import { ProfileActionTypes } from '../../core/profile/state/actions';
+import { ProfileActionTypes, SetProfile } from '../../core/profile/state/actions';
 import { ProfileState } from '../../core/profile/state/types';
-import { SetProfile } from '../../core/profile/state/actions';
 import { store } from '../../app';
 import { Middleware } from 'redux';
 import { AuthActionTypes } from '../../core/auth/state/actions';

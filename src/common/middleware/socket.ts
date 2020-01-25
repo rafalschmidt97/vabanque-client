@@ -1,5 +1,5 @@
-import { Disconnect } from './../../core/game/state/actions';
-import { Disconnected, SocketActionTypes, Connected } from './../../core/socket/state/actions';
+import { Disconnect } from '../../core/game/state/actions';
+import { Connected, Disconnected, SocketActionTypes } from '../../core/socket/state/actions';
 import { Middleware, Store } from 'redux';
 import SockJS from 'sockjs-client';
 import { store } from '../../app';

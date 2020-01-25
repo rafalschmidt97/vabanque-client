@@ -1,12 +1,12 @@
 import React, { Dispatch } from 'react';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../core/state';
 import {
   NavigateGame,
-  NavigateSettings,
   NavigateMoney,
+  NavigateSettings,
 } from '../../core/footer-menu/state/actions';
 
 const FooterMenu = () => {

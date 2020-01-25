@@ -1,4 +1,4 @@
-import { FooterActionTypes } from './../../core/footer-menu/state/actions';
+import { FooterActionTypes } from '../../core/footer-menu/state/actions';
 import { Middleware } from 'redux';
 import history from '../history';
 

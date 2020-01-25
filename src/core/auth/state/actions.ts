@@ -1,6 +1,7 @@
 import { Action } from 'redux';
 
 import { Token } from '../types';
+
 export enum AuthActionTypes {
   Login = '[Auth] Login',
   Logout = '[Auth] Logout',

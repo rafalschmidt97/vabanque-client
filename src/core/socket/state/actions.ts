@@ -1,4 +1,4 @@
-import { GameSettings, Code, GameId, AccessToken, Ranks } from './types';
+import { AccessToken, Code, GameId, GameSettings, Ranks } from './types';
 import { Action } from 'redux';
 
 export enum SocketActionTypes {

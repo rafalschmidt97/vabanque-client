@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Redirect, RouteComponentProps } from 'react-router';
+import { Redirect, RouteComponentProps, Switch } from 'react-router';
 import ProtectedRoute from '../common/component/protected-route';
 import StartGame from './start';
 import FindLobby from './find-lobby';

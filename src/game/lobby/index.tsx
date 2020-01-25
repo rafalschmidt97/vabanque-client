@@ -1,6 +1,6 @@
 import React, { Dispatch } from 'react';
 import styles from './styles.module.scss';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../core/state';
 import FooterMenu from '../../common/component/footer-menu';
 import { Leave, Start } from '../../core/socket/state/actions';

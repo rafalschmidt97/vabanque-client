@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import FooterMenu from '../common/component/footer-menu';
 import styles from './styles.module.scss';
 import debtorApi from './api/api';
-import { Debtor, Creditor } from './types';
+import { Creditor, Debtor } from './types';
 import Modal from './contact';
 
 const Money = () => {

@@ -1,4 +1,4 @@
-import { GameActionTypes } from './../../core/game/state/actions';
+import { GameActionTypes } from '../../core/game/state/actions';
 import { Middleware } from 'redux';
 import { Player } from '../../core/game/state/types';
 import accountApi from '../../core/game/api';

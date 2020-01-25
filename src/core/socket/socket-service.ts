@@ -1,18 +1,18 @@
 import {
-  Pause,
-  Leave,
-  Start,
-  Resume,
   Create,
-  Join,
-  FailedJoin,
-  Sync as GameSync,
-  Raise,
   FailedCreate,
-  FailedStart,
+  FailedJoin,
   FailedResume,
-} from './../game/state/actions';
-import { SocketResponse, SocketErrorResponse } from './state/types';
+  FailedStart,
+  Join,
+  Leave,
+  Pause,
+  Raise,
+  Resume,
+  Start,
+  Sync as GameSync,
+} from '../game/state/actions';
+import { SocketErrorResponse, SocketResponse } from './state/types';
 import { Store } from 'redux';
 import { RootState } from '../state';
 import { Sync as SocketSync } from './state/actions';

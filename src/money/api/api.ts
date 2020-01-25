@@ -1,4 +1,4 @@
-import { Debtor, Creditor } from './../types';
+import { Creditor, Debtor } from '../types';
 import httpClient from '../../common/http';
 import PagingRequest, { DeleteDebtorRequets } from './types';
 

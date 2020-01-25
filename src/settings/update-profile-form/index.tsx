@@ -1,11 +1,11 @@
-import React, { useState, useEffect, Dispatch } from 'react';
+import React, { Dispatch, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik, FormikProps } from 'formik';
 import styles from './styles.module.scss';
 import UploadProfilePicture from './upload-profile-picture/upload-profile-picture';
 import accountApi from './api/api';
-import { FormValues, initialFormValues, FormSchema } from './types';
+import { FormSchema, FormValues, initialFormValues } from './types';
 import Update from './form/button/update';
 import Nickname from './form/field/nickname';
 import Phone from './form/field/phone';

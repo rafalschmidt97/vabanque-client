@@ -1,4 +1,4 @@
-import { store } from './../../app';
+import { store } from '../../app';
 import { Player } from './state/types';
 
 const isPlayerAdmin = () => {

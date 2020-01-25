@@ -1,6 +1,5 @@
-import { RefreshRequest, LogoutRequest } from '../../home/login/external-auth/types';
+import { AuthRequest, LogoutRequest, RefreshRequest } from '../../home/login/external-auth/types';
 import { Token } from './types';
-import { AuthRequest } from '../../home/login/external-auth/types';
 import httpClient from '../../common/http';
 
 class AuthApi {

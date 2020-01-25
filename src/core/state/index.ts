@@ -1,9 +1,9 @@
-import { FooterReducer } from './../footer-menu/state/reducer';
-import { FooterState } from './../footer-menu/state/types';
-import { GameState } from './../game/state/types';
-import { GameReducer } from './../game/state/reducer';
-import { ProfileState } from './../profile/state/types';
-import { ProfileReducer } from './../profile/state/reducer';
+import { FooterReducer } from '../footer-menu/state/reducer';
+import { FooterState } from '../footer-menu/state/types';
+import { GameState } from '../game/state/types';
+import { GameReducer } from '../game/state/reducer';
+import { ProfileState } from '../profile/state/types';
+import { ProfileReducer } from '../profile/state/reducer';
 import { combineReducers, Reducer, Store } from 'redux';
 import thunk from 'redux-thunk';
 import actionToPlainObject from '../../common/middleware/action-to-plain-object';

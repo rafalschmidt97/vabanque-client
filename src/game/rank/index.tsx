@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, FormikProps, Form, FieldArray } from 'formik';
+import { FieldArray, Form, Formik, FormikProps } from 'formik';
 import styles from './styles.module.scss';
 import FooterMenu from '../../common/component/footer-menu';
 import { FormValues } from './types';

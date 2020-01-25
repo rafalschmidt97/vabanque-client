@@ -1,4 +1,4 @@
-import UpdateProfileRequest, { UploadResponse, GetProfileResponse } from './types';
+import UpdateProfileRequest, { GetProfileResponse, UploadResponse } from './types';
 import httpClient from '../../../common/http';
 import { AxiosResponse } from 'axios';
 

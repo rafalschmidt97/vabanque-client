@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { GameData, startedAt, Progression } from './types';
+import { GameData, Progression, startedAt } from './types';
 
 export enum GameActionTypes {
   Create = '[Game] Create',

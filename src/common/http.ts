@@ -1,5 +1,5 @@
-import { Logout } from './../core/auth/state/actions';
-import { store } from './../app';
+import { Logout } from '../core/auth/state/actions';
+import { store } from '../app';
 import { RefreshRequest } from '../home/login/external-auth/types';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import isProduction from './util/is-production';

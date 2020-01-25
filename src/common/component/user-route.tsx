@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { Dispatch } from 'react';
 import { Route, RouteProps } from 'react-router';
 import { useDispatch } from 'react-redux';
 import localStorageService from '../../core/auth/localStorageService';
 import authApi from '../../core/auth/api';
-import { Dispatch } from 'react';
 import { Login } from '../../core/auth/state/actions';
 import LoginComponent from '../../home/login';
 import { NavigateGame } from '../../core/footer-menu/state/actions';
