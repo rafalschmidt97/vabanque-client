@@ -8,7 +8,7 @@ const GoBack = () => {
   return (
     <>
       <button
-        className={`button is-danger is-size-3 is-rounded ${styles.back}`}
+        className={`button is-danger is-rounded ${styles.back}`}
         onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
           e.preventDefault();
           history.goBack();

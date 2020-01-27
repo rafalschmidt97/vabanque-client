@@ -35,8 +35,8 @@ const FindLobby = () => {
       <Helmet>
         <title>Find Lobby</title>
       </Helmet>
-      <GoBack />
       <section className="hero is-primary is-fullheight">
+        <GoBack />
         <div className={`hero-body ${styles.padding}`}>
           <Formik
             validationSchema={FormSchema}
