@@ -40,7 +40,7 @@ const UploadProfilePicture: FC<Props> = (props: Props) => {
         <ProfilePicture profilePictureSrc={profilePictureSrc} size="150" />
         <input
           type="file"
-          className="is-invisible-touch"
+          className="is-invisible-touch is-invisible"
           accept="image/*"
           ref={fileInput}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFileChange(e.target.files)}

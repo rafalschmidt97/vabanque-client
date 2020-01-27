@@ -76,7 +76,7 @@ const UpdateProfileForm = () => {
         </div>
       </section>
 
-      <section className="section">
+      <section className={`section ${styles.white}`}>
         <Formik
           validationSchema={FormSchema}
           initialValues={formValues}
@@ -89,7 +89,7 @@ const UpdateProfileForm = () => {
               <Nickname hasErrors={!!(touched.nickname && errors.nickname)} />
               <Phone hasErrors={!!(touched.phoneNumber && errors.phoneNumber)} />
 
-              <footer className={`footer has-background-white center`}>
+              <footer className={`footer ${styles.white} center`}>
                 <div className={`field is-flex is-full-width ${styles.bottom} ${styles.between}`}>
                   <Update isSubmitting={isSubmitting} />
                   <Cancel isSubmitting={isSubmitting} />
