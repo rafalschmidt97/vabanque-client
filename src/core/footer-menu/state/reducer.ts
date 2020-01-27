@@ -37,7 +37,9 @@ export const FooterReducer: Reducer<FooterState, FooterActions> = (
         isSettingsActive: true,
       };
     }
+    default:
+      return {
+        ...state,
+      };
   }
-
-  return state;
 };

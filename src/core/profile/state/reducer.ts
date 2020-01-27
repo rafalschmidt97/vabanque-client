@@ -25,7 +25,14 @@ export const ProfileReducer: Reducer<ProfileState, ProfileActions> = (
         avatar: action.payload.avatar,
       };
     }
+    case ProfileActionTypes.UpdateProfile: {
+      return {
+        ...state,
+      };
+    }
+    default:
+      return {
+        ...state,
+      };
   }
-
-  return state;
 };
