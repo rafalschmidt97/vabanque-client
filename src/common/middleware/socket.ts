@@ -7,6 +7,7 @@ import { AuthActionTypes } from '../../core/auth/state/actions';
 import { RootState } from '../../core/state';
 import socketService from '../../core/socket/socket-service';
 import AppConstants from '../constants';
+import isProduction from '../util/is-production';
 
 let socket: WebSocket | null = null;
 const onOpen = (store: Store<RootState>) => () => {
@@ -34,7 +35,11 @@ const webSocket: Middleware = () => next => action => {
         socket.close();
       }
 
-      socket = new SockJS(`${AppConstants.appUrl}/game?access_token=${action.payload.accessToken}`);
+      socket = new SockJS(
+        `${isProduction ? AppConstants.productionAppUrl : AppConstants.appUrl}/game?access_token=${
+          action.payload.accessToken
+        }`,
+      );
 
       socket.onopen = onOpen(store);
       socket.onclose = onClose(store);
