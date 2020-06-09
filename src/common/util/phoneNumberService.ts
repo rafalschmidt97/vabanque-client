@@ -8,7 +8,11 @@ class PhoneNumberService {
   }
 
   removeCountryCode(phoneNumber: string): string {
-    return phoneNumber.substr(4);
+    if (phoneNumber !== null) {
+      return phoneNumber.substr(4);
+    } else {
+      return '';
+    }
   }
 }
 
