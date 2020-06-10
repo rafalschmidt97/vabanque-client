@@ -151,7 +151,7 @@ const Money = () => {
           <h1 className="title has-text-black">Own List</h1>
         </div>
         <div className="hero-body flex-column is-paddingless">
-          <div className="columns is-full-width is-desktop">
+          <div className="columns is-full-width is-block">
             {renderCreditors(creditors)} {renderDebtors(debtors)}
             {renderNoContentMessage(debtors, creditors)}
           </div>
